@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>مساعد خدمة العملاء الذكي بالعربي | أحمد حسام</title>
+<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/ai.css?v=5">
+<style>
+.chatbox{display:flex;flex-direction:column;height:640px;max-height:76vh;padding:0;overflow:hidden;box-shadow:var(--shadow)}
+.chead{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.av{width:42px;height:42px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:20px;font-weight:700;position:relative;flex-shrink:0}
+.av::after{content:"";position:absolute;bottom:1px;inset-inline-end:1px;width:10px;height:10px;border-radius:50%;background:var(--saffron);border:2px solid var(--surface)}
+.chead b{font-family:var(--display);font-size:16.5px}
+.msgs{flex:1;overflow:auto;padding:20px 18px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;background:var(--sunk)}
+.m{max-width:80%;padding:10px 15px;border-radius:16px;white-space:pre-wrap;animation:pop .2s ease;line-height:1.8;font-size:15px}
+.m.u{align-self:flex-start;background:var(--brand);color:#fff;border-end-start-radius:5px}
+.m.b{align-self:flex-end;background:var(--surface);border:1px solid var(--line);border-end-end-radius:5px}
+.m .src{display:block;margin-top:8px;padding-top:6px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.typing span{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--faint);margin:0 2px;animation:bl 1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes bl{50%{opacity:.25}}
+.quick{display:flex;gap:6px;flex-wrap:wrap;padding:12px 18px 0;background:var(--surface);border-top:1px solid var(--line)}
+.quick button{background:var(--surface);border:1px solid var(--line2);color:var(--ink);border-radius:999px;padding:4px 13px;font:inherit;font-size:13.5px;cursor:pointer}
+.quick button:hover{border-color:var(--brand);color:var(--brand)}
+.send{display:flex;gap:8px;padding:12px 18px 16px;background:var(--surface)}
+.send input{flex:1}
+table{width:100%;border-collapse:collapse;font-size:14.5px}th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top}th{color:var(--muted);font-weight:600;font-size:13px}
+.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}.kpi div{background:var(--sunk);border:1px solid var(--line);border-radius:var(--r-md);padding:14px}.kpi b{display:block;font-family:var(--display);font-size:28px;line-height:1.2}
+.res input,.res textarea{background:var(--surface)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="index.html"><span class="mark">أ</span><span><b>استوديو أحمد</b><small>أدوات ذكاء اصطناعي تعمل الآن</small></span></a>
+    <nav class="nav" aria-label="الأدوات"><a href="index.html">كل الأدوات</a><a href="content.html">مولد المحتوى</a><a href="cv.html">محلل السير الذاتية</a><a href="chat.html" aria-current="page">مساعد خدمة العملاء</a><a href="krooki.html">Krooki على واتساب</a></nav>
+    <div class="actions"><span data-mode class="badge live"><i></i>متصل بـ Gemini</span><button class="btn ghost sm" data-open-settings>⚙ الإعدادات</button></div>
+  </header>
+  <section class="hero">
+    <h1>مساعد يرد على عملائك بالعربي من معلومات شركتك</h1>
+    <p>يجيب من الأسئلة الشائعة والملفات التي تضيفها، ويعتذر ويحوّل للدعم بدل أن يخترع إجابة. المثال هنا لمتجر افتراضي اسمه «سما للعطور»، اسأله كأنك عميل.</p>
+  </section>
+  <div class="trial" role="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg><div><b>هذه نسخة تجريبية مبسطة للعرض فقط.</b> النسخة الحقيقية لشركتك أقوى وأدق بكثير: تُبنى على بياناتك، وتعمل على أي حساب ذكاء اصطناعي تختاره، مثل Gemini أو ChatGPT أو Claude.</div></div>
+  <div class="tabs"><button class="on" data-tab="chat">المحادثة</button><button data-tab="kb">قاعدة المعرفة</button><button data-tab="logs">سجل المحادثات</button></div>
+  <div class="grid" style="grid-template-columns:1fr 340px">
+    <main>
+      <section id="t-chat" class="card chatbox">
+        <div class="chead"><div class="av">س</div><div><b>مساعد سما للعطور</b><div class="muted small">متصل الآن، يرد خلال ثوان</div></div><button class="btn ghost sm" id="reset" style="margin-inline-start:auto">محادثة جديدة</button></div>
+        <div class="msgs" id="msgs"></div>
+        <div class="quick" id="quick"></div>
+        <form class="send" id="form"><input id="q" placeholder="اكتب سؤالك… مثال: كم مدة التوصيل للرياض؟" autocomplete="off"><button class="btn">إرسال</button></form>
+      </section>
+      <section id="t-kb" class="card" hidden>
+        <div class="row space"><h3 style="margin:0">قاعدة المعرفة</h3><div class="row"><button class="btn ghost sm" id="addFaq">إضافة سؤال وجواب</button><button class="btn ghost sm" id="upBtn">رفع ملف نصي</button><input type="file" id="up" accept=".txt,.md" hidden></div></div>
+        <p class="muted small">كل ما تضيفه هنا يستخدمه المساعد فورا في الرد. في نسخة العميل تُحفظ البيانات في قاعدة بيانات وتُدار بكلمة مرور.</p>
+        <div id="kbList"></div>
+      </section>
+      <section id="t-logs" class="card" hidden>
+        <h3>سجل المحادثات</h3>
+        <div class="kpi"><div><b id="kTotal">0</b><span class="muted small">رسالة</span></div><div><b id="kAns">0%</b><span class="muted small">تمت الإجابة</span></div><div><b id="kMiss">0</b><span class="muted small">بدون إجابة</span></div></div>
+        <table><thead><tr><th>الوقت</th><th>سؤال العميل</th><th>الحالة</th></tr></thead><tbody id="logRows"></tbody></table>
+        <button class="btn ghost sm" id="clearLogs" style="margin-top:10px">مسح السجل</button>
+      </section>
+    </main>
+    <aside class="card">
+      <h3>كيف يعمل؟</h3>
+      <ul class="steps small">
+        <li>يفهم العربي بلهجاته ويتجاهل الهمزات والتشكيل.</li>
+        <li>يبحث في قاعدة المعرفة ويختار الأقرب لسؤال العميل.</li>
+        <li>مع Gemini يصيغ الرد بأسلوب طبيعي ملتزما بمعلوماتك فقط.</li>
+        <li>لو السؤال خارج المعلومات يعتذر ويحوّل للدعم بدل الاختلاق.</li>
+        <li>كل محادثة تُحفظ وتظهر في السجل مع الأسئلة التي لم يجد لها إجابة لتضيفها.</li>
+      </ul>
+      <h3 style="margin-top:20px">جرّب تسأل</h3>
+      <div class="chips" id="try"></div>
+    </aside>
+  </div>
+  <footer class="foot">نموذج عرض من تنفيذ أحمد حسام. بحث في قاعدة المعرفة مع صياغة الرد عبر Gemini. نسخة العميل تُرفع برابط خاص ولوحة تحكم محمية بكلمة مرور.</footer>
+</div>
+<script src="assets/ai.js?v=4"></script>
+<script>
+const $=s=>document.querySelector(s);AI.mountSettings();
+const DEFAULT_KB=[
+{q:'كم مدة التوصيل؟ متى يوصل الطلب؟ الشحن',a:'التوصيل داخل الرياض خلال 24 ساعة، وباقي مدن المملكة من 2 إلى 4 أيام عمل. وتوصلك رسالة برقم التتبع أول ما يُشحن الطلب.'},
+{q:'كم سعر التوصيل؟ رسوم الشحن هل الشحن مجاني؟',a:'الشحن مجاني للطلبات فوق 200 ريال. أقل من كذا رسوم التوصيل 25 ريال داخل الرياض و35 ريال لباقي المدن.'},
+{q:'سياسة الاسترجاع والاستبدال ترجيع ارجع ارجاع رجع استرد ابدل تبديل المنتج',a:'تقدر تسترجع أو تستبدل خلال 7 أيام من الاستلام بشرط أن يكون المنتج مغلقا بغلافه الأصلي. يتم رد المبلغ لنفس وسيلة الدفع خلال 5 أيام عمل.'},
+{q:'طرق الدفع المتاحة الدفع عند الاستلام مدى ابل باي تابي',a:'نقبل مدى، فيزا وماستركارد، Apple Pay، والتقسيط عبر تابي وتمارا بدون فوائد. والدفع عند الاستلام متاح داخل الرياض برسوم 10 ريال.'},
+{q:'كم يثبت العطر؟ ثبات العطر',a:'عطور سما بتركيز Eau de Parfum، وثباتها من 10 إلى 24 ساعة حسب نوع البشرة والجو. ننصح برشه على نقاط النبض وعلى الملابس لثبات أطول.'},
+{q:'هل العطور أصلية؟ مكونات طبيعية',a:'كل عطورنا من إنتاج مصنع سما في الرياض بمكونات مرخصة من هيئة الغذاء والدواء، والعود المستخدم طبيعي من كمبوديا والهند.'},
+{q:'أوقات العمل متى تفتحون رقم خدمة العملاء التواصل',a:'خدمة العملاء متاحة يوميا من 10 صباحا حتى 12 منتصف الليل، والمساعد الذكي يرد عليك 24 ساعة.'},
+{q:'هل عندكم عروض؟ خصم كود خصم كوبون',a:'حاليا عندنا خصم 15% على مجموعة العود بكود SAMA15، وعلبة هدية مجانية مع أي طلب فوق 400 ريال.'},
+{q:'تغليف هدية بطاقة إهداء',a:'نعم، تقدر تختار تغليف الهدية مع بطاقة إهداء مكتوب عليها رسالتك مجانا من صفحة إتمام الطلب.'},
+{q:'تتبع الطلب وين طلبي حالة الطلب',a:'تقدر تتابع طلبك من «طلباتي» في حسابك، أو من رابط التتبع اللي يوصلك برسالة نصية بعد الشحن. لو تحتاج مساعدة أرسل رقم الطلب وأتحقق لك.'}];
+let KB=AI.store.get('cb_kb',DEFAULT_KB);
+const saveKB=()=>AI.store.set('cb_kb',KB);
+const logs=()=>AI.store.get('cb_logs',[]);
+function addLog(q,ok){const l=logs();l.unshift({t:Date.now(),q,ok});AI.store.set('cb_logs',l.slice(0,200))}
+/* BM25 style retrieval with Arabic normalisation and light stemming */
+const STOP=new Set('في من على عن الى مع هل كم ما ماذا متى وين كيف هو هي انا انت عندكم عندك لو اذا ايش شو يا ابي ابغى اريد ممكن الله السلام عليكم و او ثم'.split(' ').map(AI.norm));
+const stem=w=>w.replace(/^(وال|بال|كال|فال|لل|ال)/,'').replace(/(ها|هم|كم|ات|ون|ين|يه|ه)$/,'');
+const toks=s=>AI.norm(s).split(' ').filter(w=>w.length>1&&!STOP.has(w)).map(stem).filter(w=>w.length>1);
+function search(query){
+  const qd=KB.map(d=>toks(d.q)),ad=KB.map(d=>toks(d.a)),N=KB.length,qt=toks(query);
+  const df={};qd.forEach((d,i)=>new Set([...d,...ad[i]]).forEach(w=>df[w]=(df[w]||0)+1));
+  const hit=(arr,w)=>arr.filter(x=>x===w||(w.length>3&&x.length>3&&(x.startsWith(w)||w.startsWith(x)))).length;
+  return qd.map((d,i)=>{let s=0;qt.forEach(w=>{const idf=Math.log(1+(N-(df[w]||0)+.5)/((df[w]||0)+.5));const fq=hit(d,w),fa=hit(ad[i],w);if(fq)s+=idf*1.6;else if(fa)s+=idf*.45});return {i,s}}).sort((a,b)=>b.s-a.s);
+}
+const msgs=$('#msgs');
+function bubble(text,who,src){const d=document.createElement('div');d.className='m '+who;d.textContent=text;if(src){const s=document.createElement('span');s.className='src';s.textContent='المصدر: '+src;d.appendChild(s)}msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
+function greet(){msgs.innerHTML='';bubble('أهلا وسهلا في متجر سما للعطور 🌿\nأنا المساعد الذكي، اسألني عن التوصيل، الدفع، الاسترجاع، العروض أو أي شيء عن منتجاتنا.','b')}
+async function ask(q){
+  q=q.trim();if(!q)return;bubble(q,'u');$('#q').value='';
+  const t=bubble('','b');t.innerHTML='<span class="typing"><span></span><span></span><span></span></span>';
+  const hits=search(q),top=hits.filter(h=>h.s>0.9).slice(0,3);
+  if(/^(السلام|سلام|هلا|مرحبا|اهلا|hi|hello)/i.test(AI.norm(q))&&q.length<25){await wait(500);t.remove();bubble('وعليكم السلام ورحمة الله 😊 كيف أقدر أخدمك اليوم؟','b');addLog(q,true);return}
+  let ans,src,ok=!!top.length;
+  if(AI.live()){
+    try{ans=await AI.gemini(`سؤال العميل: ${q}\n\nالمعلومات المتاحة:\n${(top.length?top:hits.slice(0,4)).map(h=>'• '+KB[h.i].a).join('\n')}`,{system:'أنت موظف خدمة عملاء لمتجر سما للعطور في السعودية. رد بالعربية بأسلوب ودود ومختصر. استخدم المعلومات المتاحة فقط، ولو لم تجد الإجابة فيها قل بلطف إنك ستحول السؤال لفريق الدعم ولا تخترع أي معلومة.',temperature:.4});src=top.length?'قاعدة المعرفة + Gemini':'';}catch(e){}
+  }
+  if(!ans){await wait(700);if(top.length){ans=KB[top[0].i].a;src='قاعدة المعرفة'}else{ans='سؤال ممتاز 🙏 ما عندي معلومة مؤكدة عنه حاليا، وما أحب أعطيك إجابة غير دقيقة. حوّلت سؤالك لفريق خدمة العملاء وبيتواصلون معك هنا قريبا.'}}
+  t.remove();bubble(ans,'b',src);addLog(q,ok);paintLogs();
+}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const SUG=['كم مدة التوصيل للرياض؟','عندكم دفع عند الاستلام؟','ابي ارجع العطر','فيه كود خصم؟','هل تبيعون ساعات؟'];
+$('#quick').innerHTML=SUG.slice(0,4).map(s=>`<button>${s}</button>`).join('');$('#try').innerHTML=SUG.map(s=>`<button class="chip" style="cursor:pointer">${s}</button>`).join('');
+document.querySelectorAll('#quick button,#try button').forEach(b=>b.onclick=()=>{tab('chat');ask(b.textContent)});
+$('#form').onsubmit=e=>{e.preventDefault();ask($('#q').value)};$('#reset').onclick=greet;
+function tab(n){document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('on',b.dataset.tab===n));['chat','kb','logs'].forEach(x=>$('#t-'+x).hidden=x!==n);if(n==='kb')paintKB();if(n==='logs')paintLogs()}
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>tab(b.dataset.tab));
+function paintKB(){$('#kbList').innerHTML=KB.map((d,i)=>`<div class="res" style="margin-top:12px"><span class="tag">#${i+1}</span><label style="margin-top:4px">الأسئلة والكلمات الدالة</label><input data-i="${i}" data-k="q" value="${AI.esc(d.q)}"><label>الإجابة</label><textarea data-i="${i}" data-k="a">${AI.esc(d.a)}</textarea><div class="tools"><button class="btn ghost sm" data-del="${i}">حذف</button></div></div>`).join('');
+  document.querySelectorAll('#kbList [data-k]').forEach(el=>el.oninput=()=>{KB[el.dataset.i][el.dataset.k]=el.value;saveKB()});
+  document.querySelectorAll('#kbList [data-del]').forEach(b=>b.onclick=()=>{KB.splice(+b.dataset.del,1);saveKB();paintKB()})}
+$('#addFaq').onclick=()=>{KB.unshift({q:'سؤال جديد',a:'الإجابة'});saveKB();paintKB()};
+$('#upBtn').onclick=()=>$('#up').click();
+$('#up').onchange=async()=>{const f=$('#up').files[0];if(!f)return;const txt=await f.text();const parts=txt.split(/\n\s*\n/).map(s=>s.trim()).filter(s=>s.length>20);parts.forEach(p=>KB.push({q:p.split('\n')[0].slice(0,120),a:p}));saveKB();paintKB();AI.toast(`تمت إضافة ${parts.length} فقرة من ${f.name}`)};
+function paintLogs(){const l=logs(),ok=l.filter(x=>x.ok).length;$('#kTotal').textContent=l.length;$('#kAns').textContent=l.length?Math.round(ok/l.length*100)+'%':'0%';$('#kMiss').textContent=l.length-ok;
+  $('#logRows').innerHTML=l.slice(0,40).map(x=>`<tr><td class="muted small">${new Date(x.t).toLocaleString('ar-SA',{hour:'2-digit',minute:'2-digit',day:'numeric',month:'short'})}</td><td>${AI.esc(x.q)}</td><td>${x.ok?'<span class="chip good">تمت الإجابة</span>':'<span class="chip bad">أضفها للمعرفة</span>'}</td></tr>`).join('')||'<tr><td colspan="3" class="muted">لا توجد محادثات بعد</td></tr>'}
+$('#clearLogs').onclick=()=>{AI.store.set('cb_logs',[]);paintLogs()};
+greet();
+</script>
+</body>
+</html>

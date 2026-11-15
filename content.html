@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>مولد المحتوى التسويقي بالذكاء الاصطناعي | أحمد حسام</title>
+<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/ai.css?v=5">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="index.html"><span class="mark">أ</span><span><b>استوديو أحمد</b><small>أدوات ذكاء اصطناعي تعمل الآن</small></span></a>
+    <nav class="nav" aria-label="الأدوات"><a href="index.html">كل الأدوات</a><a href="content.html" aria-current="page">مولد المحتوى</a><a href="cv.html">محلل السير الذاتية</a><a href="chat.html">مساعد خدمة العملاء</a><a href="krooki.html">Krooki على واتساب</a></nav>
+    <div class="actions"><span data-mode class="badge live"><i></i>متصل بـ Gemini</span><button class="btn ghost sm" data-open-settings>⚙ الإعدادات</button><button class="btn ghost sm" id="langBtn">EN</button></div>
+  </header>
+  <section class="hero">
+    <h1 data-t="h1">محتوى تسويقي جاهز للنشر خلال ثوان</h1>
+    <p data-t="sub">اكتب اسم منتجك ومميزاته، واختر المنصة والأسلوب. تحصل على 3 نسخ مختلفة بلهجة سعودية واضحة أو بالإنجليزي، جاهزة للنسخ.</p>
+  </section>
+  <div class="trial" role="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg><div data-t="trial"><b>هذه نسخة تجريبية مبسطة للعرض فقط.</b> النسخة الحقيقية لشركتك أقوى وأدق بكثير: تُبنى على بياناتك، وتعمل على أي حساب ذكاء اصطناعي تختاره، مثل Gemini أو ChatGPT أو Claude.</div></div>
+  <div class="grid">
+    <aside class="card noprint">
+      <h3 data-t="form">بيانات المنتج</h3>
+      <label data-t="lName">اسم المنتج أو الخدمة</label>
+      <input id="name" value="عطر سما الشرقي">
+      <label data-t="lDesc">وصف مختصر ومميزات</label>
+      <textarea id="desc">عطر عود فاخر بثبات يدوم 24 ساعة، مكونات طبيعية، عبوة 100 مل، توصيل مجاني داخل الرياض</textarea>
+      <label data-t="lAud">الجمهور المستهدف</label>
+      <input id="aud" value="الرجال والنساء محبي العود من 25 إلى 45 سنة">
+      <label data-t="lType">نوع المحتوى</label>
+      <div class="seg" id="type">
+        <button data-v="post" class="on">منشور سوشيال</button><button data-v="ad">إعلان</button><button data-v="desc">وصف منتج</button><button data-v="head">عناوين وعبارات</button>
+      </div>
+      <label data-t="lTone">أسلوب الكتابة</label>
+      <div class="seg" id="tone"><button data-v="formal">رسمي</button><button data-v="sales" class="on">تسويقي</button><button data-v="creative">إبداعي</button></div>
+      <label data-t="lLang">لغة المحتوى</label>
+      <div class="seg" id="lang"><button data-v="ar" class="on">العربية</button><button data-v="en">English</button></div>
+      <label data-t="lPlat">المنصة</label>
+      <div class="seg" id="plat"><button data-v="ig" class="on">إنستغرام</button><button data-v="fb">فيسبوك</button><button data-v="x">X</button><button data-v="tt">تيك توك</button></div>
+      <button class="btn block" id="go"><span data-t="go">اكتب المحتوى</span></button>
+      <p class="muted small" style="margin:10px 0 0" data-t="note">كل ضغطة تعطيك 3 نسخ مختلفة تختار منها.</p>
+    </aside>
+    <main>
+      <div class="row space" style="margin-bottom:12px"><h2 data-t="results" style="margin:0;font-size:20px">النتائج</h2><div class="row"><button class="btn ghost sm" id="copyAll" data-t="copyAll">نسخ الكل</button><button class="btn ghost sm" id="again" data-t="again">نسخ جديدة</button></div></div>
+      <div class="out" id="out"><div class="empty"><div><b data-t="emptyT">النسخ ستظهر هنا</b><span data-t="empty">عدّل بيانات المنتج أو جرّب المثال الجاهز، ثم اضغط «اكتب المحتوى».</span></div></div></div>
+      <div style="margin-top:22px"><h3 data-t="histT" style="font-size:16px;margin:0 0 10px">آخر ما كتبته</h3><div id="hist" class="chips"></div></div>
+    </main>
+  </div>
+  <footer class="foot">نموذج عرض من تنفيذ أحمد حسام. مبني بـ HTML وJavaScript ومربوط بـ Gemini عبر خادم وسيط، فمفتاح الـ API لا يظهر في الصفحة.</footer>
+</div>
+<script src="assets/ai.js?v=4"></script>
+<script>
+const $=s=>document.querySelector(s);
+const val=id=>[...document.querySelectorAll('#'+id+' button')].find(b=>b.classList.contains('on')).dataset.v;
+document.querySelectorAll('.seg').forEach(g=>g.addEventListener('click',e=>{if(e.target.tagName!=='BUTTON')return;g.querySelectorAll('button').forEach(b=>b.classList.remove('on'));e.target.classList.add('on')}));
+const settings=AI.mountSettings();
+let ui='ar';
+const T={en:{h1:'Ready to publish marketing copy in seconds',sub:'Enter your product and its features, pick the platform and tone, and get 3 different versions ready to copy.',form:'Product details',lName:'Product or service name',lDesc:'Short description and features',lAud:'Target audience',lType:'Content type',lTone:'Writing tone',lLang:'Content language',lPlat:'Platform',go:'Write content',note:'Every click gives you 3 different versions.',results:'Results',copyAll:'Copy all',again:'New versions',emptyT:'Your versions will appear here',empty:'Edit the product details or use the ready example, then press “Write content”.',histT:'Recent',trial:'<b>This is a simplified trial version for demo only.</b> The real version for your company is far stronger and more accurate: built on your data, and running on any AI account you choose, such as Gemini, ChatGPT or Claude.'}};
+const AR={};document.querySelectorAll('[data-t]').forEach(el=>AR[el.dataset.t]=el.innerHTML);
+$('#langBtn').onclick=()=>{ui=ui==='ar'?'en':'ar';document.documentElement.lang=ui;document.documentElement.dir=ui==='ar'?'rtl':'ltr';$('#langBtn').textContent=ui==='ar'?'EN':'عربي';document.querySelectorAll('[data-t]').forEach(el=>el.innerHTML=(ui==='en'?T.en:AR)[el.dataset.t]||AR[el.dataset.t])};
+
+/* ---------- Local demo engine (works with no key) ---------- */
+const P=AI.pick;
+function feats(d){return d.split(/[،,\n.]+/).map(s=>s.trim()).filter(s=>s.length>2).slice(0,5)}
+const EMO={ig:['✨','🔥','💫','🌿','🎁','👌'],fb:['✅','⭐','📦','💯'],x:['⚡','👇'],tt:['🔥','😍','⏳']};
+const TAGS={ar:n=>['#'+n.replace(/\s+/g,'_'),'#عروض','#السعودية','#الرياض','#تسوق_اونلاين','#جديد'],en:n=>['#'+n.replace(/\s+/g,''),'#NewIn','#ShopNow','#KSA','#Deals']};
+function local(type,tone,lang,plat,name,desc,aud){
+  const f=feats(desc), e=EMO[plat]||EMO.ig, f1=f[0]||'', f2=f[1]||'', f3=f[2]||'';
+  const tags=TAGS[lang](name).slice(0,plat==='x'?2:5).join(' ');
+  if(lang==='en'){
+    const open={formal:[`Introducing ${name}.`,`${name}: quality you can rely on.`],sales:[`Stop scrolling 👀 ${name} is here!`,`Your new favourite: ${name}.`,`Looking for the best? Meet ${name}.`],creative:[`Some things are felt before they are seen. ${name}.`,`Imagine a day that starts with ${name}…`]};
+    const cta={formal:['Order now through our website.','Contact us for details.'],sales:['Order today, limited stock! 🛒','Tap the link and grab yours now 👇'],creative:['Make it yours today.','Your story starts here.']};
+    if(type==='head')return [P(open[tone]).replace(/\.$/,''),`Why everyone is talking about ${name}`,`${f1||name}, finally done right`,`Made for ${aud||'you'}`,`Don’t miss ${name} this week`].join('\n');
+    if(type==='desc')return `${name}\n\n${P(['Crafted for','Designed for','Made for'])} ${aud||'people who expect the best'}, ${name} combines ${f1||'premium quality'}${f2?' with '+f2:''}.\n\nKey features:\n• ${f.join('\n• ')||'Premium quality'}\n\n${P(cta[tone])}`;
+    if(type==='ad')return `${P(open[tone])}\n${f1?'✔ '+f1+'\n':''}${f2?'✔ '+f2+'\n':''}${f3?'✔ '+f3+'\n':''}${P(cta[tone])}`;
+    return `${P(open[tone])} ${P(e)}\n\n${f.map(x=>P(e)+' '+x).join('\n')}\n\nPerfect for ${aud||'you'}.\n${P(cta[tone])}\n\n${tags}`;
+  }
+  const open={formal:[`نقدم لكم ${name}.`,`${name}: جودة تستحق ثقتكم.`,`يسرنا أن نقدم لكم ${name}.`],sales:[`لا تفوتك الفرصة! ${name} وصل 🔥`,`لو تدور على الأفضل، ${name} هو اختيارك.`,`وقف التمرير لحظة 👀 ${name} بين يديك الآن!`],creative:[`فيه أشياء تحسها قبل ما تشوفها… ${name}.`,`تخيل يومك يبدأ بـ ${name}.`,`لكل لحظة مميزة تفاصيلها، و${name} أجملها.`]};
+  const cta={formal:['للطلب يرجى زيارة موقعنا أو التواصل معنا.','نسعد بخدمتكم واستقبال طلباتكم.'],sales:['اطلبه الآن قبل نفاد الكمية 🛒','الكمية محدودة، اطلب اليوم 👇','اضغط على الرابط واطلب الحين!'],creative:['خلّه جزءا من قصتك اليوم.','جربه، وخل الباقي يتكلم عنه.']};
+  if(type==='head')return [`${P(['اكتشف','جرّب','لا تفوّت'])} ${name}`,`${f1||name}… أخيرا بالشكل الصح`,`ليش الكل يتكلم عن ${name}؟`,`صُنع خصيصا لـ ${aud||'لك'}`,`عرض الأسبوع: ${name}`].join('\n');
+  if(type==='desc')return `${name}\n\n${P(['صُمم خصيصا لـ','مثالي لـ','الخيار الأمثل لـ'])} ${aud||'من يبحث عن الأفضل'}، يجمع ${name} بين ${f1||'الجودة العالية'}${f2?' و'+f2:''}.\n\nالمميزات:\n• ${f.join('\n• ')||'جودة عالية'}\n\n${P(cta[tone])}`;
+  if(type==='ad')return `${P(open[tone])}\n${f1?'✔ '+f1+'\n':''}${f2?'✔ '+f2+'\n':''}${f3?'✔ '+f3+'\n':''}${P(cta[tone])}`;
+  return `${P(open[tone])} ${P(e)}\n\n${f.map(x=>P(e)+' '+x).join('\n')}\n\nمناسب لـ ${aud||'الجميع'}.\n${P(cta[tone])}\n\n${tags}`;
+}
+const TYPE_AR={post:'منشور سوشيال ميديا',ad:'إعلان قصير لمنتج',desc:'وصف منتج احترافي لمتجر إلكتروني',head:'خمسة عناوين وعبارات إعلانية جذابة'};
+const TONE_AR={formal:'رسمي',sales:'تسويقي مقنع',creative:'إبداعي قصصي'};
+const PLAT={ig:'إنستغرام',fb:'فيسبوك',x:'منصة X (أقل من 280 حرفا)',tt:'تيك توك'};
+async function generate(){
+  const name=$('#name').value.trim(),desc=$('#desc').value.trim(),aud=$('#aud').value.trim();
+  if(!name){AI.toast('اكتب اسم المنتج أولا');return}
+  const type=val('type'),tone=val('tone'),lang=val('lang'),plat=val('plat');
+  const btn=$('#go');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>';
+  let items=[];
+  try{
+    if(AI.live()){
+      const r=await AI.gemini(`اكتب 3 نسخ مختلفة من: ${TYPE_AR[type]}.\nالمنتج: ${name}\nالوصف والمميزات: ${desc}\nالجمهور: ${aud}\nالمنصة: ${PLAT[plat]}\nالأسلوب: ${TONE_AR[tone]}\nاللغة: ${lang==='ar'?'العربية بلهجة سعودية بيضاء مفهومة':'English'}\nأعد JSON فقط بالشكل {"items":["...","...","..."]}`,{json:true,system:'أنت كاتب محتوى تسويقي محترف للسوق السعودي والخليجي. محتواك جاهز للنشر، واضح، غير مبالغ فيه، بدون وعود كاذبة.'});
+      items=r.items||[];
+    }else{await new Promise(r=>setTimeout(r,650));items=[0,1,2].map(()=>local(type,tone,lang,plat,name,desc,aud))}
+  }catch(e){AI.toast('تعذر الاتصال بـ Gemini، تم التوليد محليا');items=[0,1,2].map(()=>local(type,tone,lang,plat,name,desc,aud))}
+  render(items,lang);btn.disabled=false;btn.innerHTML='<span data-t="go">'+(ui==='en'?T.en.go:AR.go)+'</span>';
+  const h=AI.store.get('cg_hist',[]);h.unshift({name,type,at:Date.now(),items});AI.store.set('cg_hist',h.slice(0,8));hist();
+}
+function render(items,lang){
+  const o=$('#out');o.innerHTML='';
+  items.forEach((t,i)=>{const d=document.createElement('div');d.className='res';d.dir=lang==='en'?'ltr':'rtl';d.innerHTML=`<span class="tag">${ui==='en'?'Version':'النسخة'} ${i+1}، ${t.length} ${ui==='en'?'chars':'حرف'}</span>${AI.esc(t)}<div class="tools"><button class="btn ghost sm">${ui==='en'?'Copy':'نسخ'}</button></div>`;d.querySelector('button').onclick=()=>AI.copy(t);o.appendChild(d)});
+  o.dataset.all=items.join('\n\n\n');
+}
+function hist(){const h=AI.store.get('cg_hist',[]);$('#hist').innerHTML=h.length?'':'<span class="muted small">لا يوجد بعد</span>';h.forEach(x=>{const c=document.createElement('button');c.className='chip';c.style.cursor='pointer';c.textContent=x.name+'، '+({post:'منشور',ad:'إعلان',desc:'وصف',head:'عناوين'}[x.type]);c.onclick=()=>render(x.items,'ar');$('#hist').appendChild(c)})}
+$('#go').onclick=generate;$('#again').onclick=generate;$('#copyAll').onclick=()=>{const a=$('#out').dataset.all;a?AI.copy(a):AI.toast('لا توجد نتائج بعد')};
+hist();
+</script>
+</body>
+</html>

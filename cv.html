@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>محلل السير الذاتية بالذكاء الاصطناعي | أحمد حسام</title>
+<link rel="icon" href="favicon.svg"><link rel="stylesheet" href="assets/ai.css?v=5">
+<style>
+.drop{border:1.5px dashed var(--line2);border-radius:var(--r-lg);padding:24px 16px;text-align:center;cursor:pointer;transition:.15s;background:var(--sunk)}
+.drop:hover,.drop.over{border-color:var(--brand);background:var(--brand-soft)}
+.drop strong{display:block;font-weight:700;color:var(--ink)}
+.drop svg{display:block;margin:0 auto 8px;color:var(--brand)}
+.score{display:grid;grid-template-columns:168px 1fr;gap:26px;align-items:center}
+@media(max-width:600px){.score{grid-template-columns:1fr;justify-items:center}}
+.ring{width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--c) calc(var(--p)*1%),#E6EAF0 0);position:relative}
+.ring::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--surface)}
+.ring>div{position:relative;z-index:1;text-align:center}
+.ring b{display:block;font-family:var(--display);font-size:52px;font-weight:700;line-height:1}
+.ring small{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.verdict{font-size:24px;margin:0 0 4px}
+.bar{height:8px;background:#E6EAF0;border-radius:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--brand);border-radius:8px;transition:width .8s}
+.crit{display:grid;gap:10px;margin-top:14px}.crit div{display:grid;grid-template-columns:120px 1fr 34px;gap:12px;align-items:center;font-size:14px}.crit b{text-align:end;font-variant-numeric:tabular-nums}
+ul.clean{margin:0;padding-inline-start:20px}ul.clean li{margin:6px 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.two{grid-template-columns:1fr}}
+.card.pos{border-top:3px solid var(--good)}.card.neg{border-top:3px solid var(--bad)}
+.rew{background:var(--sunk);border:1px solid var(--line);border-radius:var(--r-md);padding:14px;margin-top:10px}
+.rew s{color:var(--bad);text-decoration-thickness:1px}.rew p{margin:8px 0 10px;color:var(--good);font-weight:600}
+.stepno{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--ink);color:#fff;font-size:13px;margin-inline-end:8px;font-family:var(--body)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top noprint">
+    <a class="logo" href="index.html"><span class="mark">أ</span><span><b>استوديو أحمد</b><small>أدوات ذكاء اصطناعي تعمل الآن</small></span></a>
+    <nav class="nav" aria-label="الأدوات"><a href="index.html">كل الأدوات</a><a href="content.html">مولد المحتوى</a><a href="cv.html" aria-current="page">محلل السير الذاتية</a><a href="chat.html">مساعد خدمة العملاء</a><a href="krooki.html">Krooki على واتساب</a></nav>
+    <div class="actions"><span data-mode class="badge live"><i></i>متصل بـ Gemini</span><button class="btn ghost sm" data-open-settings>⚙ الإعدادات</button></div>
+  </header>
+  <section class="hero">
+    <h1>اعرف كيف تقرأ أنظمة التوظيف سيرتك</h1>
+    <p>ارفع سيرتك والصق إعلان الوظيفة. تحصل على تقييم من 100، والكلمات المفتاحية الناقصة، وإعادة صياغة جاهزة لأضعف النقاط. الملف يُقرأ داخل متصفحك ولا يُحفظ على أي خادم.</p>
+  </section>
+  <div class="trial" role="note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v5M12 16.5v.5"/></svg><div><b>هذه نسخة تجريبية مبسطة للعرض فقط.</b> النسخة الحقيقية لشركتك أقوى وأدق بكثير: تُبنى على بياناتك، وتعمل على أي حساب ذكاء اصطناعي تختاره، مثل Gemini أو ChatGPT أو Claude.</div></div>
+  <div class="grid">
+    <aside class="card noprint">
+      <h3><span class="stepno">1</span>السيرة الذاتية</h3>
+      <div class="drop" id="drop" role="button" tabindex="0"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0l-4 4m4-4l4 4"/><path d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg><strong>اسحب ملف السيرة هنا أو اختره</strong><div class="muted small">PDF أو Word أو نص</div><input type="file" id="file" accept=".pdf,.docx,.txt" hidden></div>
+      <div class="row" style="margin-top:8px"><span class="muted small" id="fname">لم يتم اختيار ملف</span><button class="btn ghost sm" id="sample">جرّب بسيرة نموذجية</button></div>
+      <label for="cv">أو الصق نص السيرة</label>
+      <textarea id="cv" style="min-height:120px" placeholder="الصق نص سيرتك هنا…"></textarea>
+      <h3 style="margin-top:22px"><span class="stepno">2</span>إعلان الوظيفة <span class="muted small" style="font-family:var(--body);font-weight:500">اختياري</span></h3>
+      <textarea id="jd" style="min-height:110px" placeholder="الصق إعلان الوظيفة لتحصل على نسبة التطابق والكلمات الناقصة"></textarea>
+      <button class="btn block" id="go">حلّل السيرة</button>
+    </aside>
+    <main id="report"><div class="empty"><div><b>التقرير سيظهر هنا</b>ارفع سيرتك أو اضغط «جرّب بسيرة نموذجية» لترى مثالا كاملا.</div></div></main>
+  </div>
+  <footer class="foot noprint">نموذج عرض من تنفيذ أحمد حسام. الملفات تُقرأ داخل المتصفح بمكتبتي pdf.js وmammoth، والتحليل عبر Gemini مع محرك محلي احتياطي.</footer>
+</div>
+<script src="assets/ai.js?v=4"></script>
+<script>
+const $=s=>document.querySelector(s);AI.mountSettings();
+const loadJS=src=>new Promise((ok,no)=>{if(document.querySelector(`script[src="${src}"]`))return ok();const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
+async function readFile(f){
+  const ext=f.name.split('.').pop().toLowerCase();
+  if(ext==='txt')return await f.text();
+  if(ext==='docx'){await loadJS('https://cdn.jsdelivr.net/npm/mammoth@1.8.0/mammoth.browser.min.js');const r=await mammoth.extractRawText({arrayBuffer:await f.arrayBuffer()});return r.value}
+  if(ext==='pdf'){await loadJS('https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js');pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';const pdf=await pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise;let t='';for(let i=1;i<=pdf.numPages;i++){const p=await pdf.getPage(i);const c=await p.getTextContent();let last=null;c.items.forEach(it=>{if(last!==null&&Math.abs(it.transform[5]-last)>4)t+='\n';t+=it.str+' ';last=it.transform[5]});t+='\n'}return t}
+  throw new Error('صيغة غير مدعومة');
+}
+const drop=$('#drop'),file=$('#file');
+drop.onclick=()=>file.click();drop.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();file.click()}};
+['dragover','dragenter'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',ev=>{if(ev.dataTransfer.files[0])take(ev.dataTransfer.files[0])});
+file.onchange=()=>file.files[0]&&take(file.files[0]);
+async function take(f){$('#fname').textContent='جاري قراءة '+f.name+'…';try{$('#cv').value=(await readFile(f)).replace(/[ \t]+/g,' ').trim();$('#fname').textContent='✓ '+f.name}catch(e){$('#fname').textContent='تعذر قراءة الملف: '+e.message}}
+$('#sample').onclick=()=>{$('#cv').value=`Mohammed Al Otaibi
+Riyadh, Saudi Arabia | m.otaibi@email.com | +966 5X XXX XXXX | linkedin.com/in/motaibi
+
+SUMMARY
+Marketing specialist with 4 years of experience in social media and campaigns.
+
+EXPERIENCE
+Marketing Specialist, Al Noor Retail (2022 to present)
+Responsible for social media accounts.
+Worked on campaigns for Ramadan and White Friday.
+Helped the sales team with promotions.
+Increased Instagram followers by 45% in 8 months.
+
+Marketing Coordinator, Bright Agency (2020 to 2022)
+Managed content calendar for 6 clients.
+Duties included writing posts and reporting.
+
+EDUCATION
+Bachelor of Business Administration, King Saud University, 2020
+
+SKILLS
+Social media, Canva, Microsoft Office, Communication`;$('#jd').value=`Digital Marketing Specialist (Riyadh)
+We are looking for a data driven digital marketer to plan and run paid campaigns on Meta, Snapchat and Google Ads, manage SEO, track KPIs in Google Analytics 4, optimise conversion rate, and report ROI to management. Experience with A/B testing, email marketing, HubSpot and marketing automation is a plus. Arabic and English required.`;$('#fname').textContent='✓ سيرة نموذجية'};
+
+/* ---------- Local analysis engine ---------- */
+const STOP=new Set('a an the and or of to in for with on at by from as is are be we our you your will this that it its using use plus required preferred experience years year looking team work strong good ability skills including such etc plan run driven management plus based new job role candidate responsibilities requirements والى و في من على الى عن مع هو هي ان أن او أو ثم كما هذا هذه التي الذي لدى عبر خلال بين كل اي أي'.split(/\s+/));
+const VERBS=['led','managed','built','created','developed','increased','reduced','launched','improved','designed','delivered','achieved','grew','drove','implemented','negotiated','optimized','optimised','automated','owned','scaled','generated','قدت','أدرت','طورت','أطلقت','حققت','رفعت','خفضت','صممت','نفذت','بنيت','زدت'];
+const WEAK=['responsible for','worked on','helped','duties included','assisted','involved in','مسؤول عن','ساعدت','شاركت في','عملت على'];
+const SECTIONS={summary:/summary|profile|objective|نبذة|الملخص|الهدف/i,experience:/experience|employment|work history|الخبرات|الخبرة|الخبرات العملية/i,education:/education|qualification|التعليم|المؤهلات/i,skills:/skills|competenc|المهارات/i,certs:/certification|courses|license|الشهادات|الدورات/i,projects:/projects|المشاريع/i};
+const tok=s=>AI.norm(s).split(' ').filter(w=>w.length>2&&!STOP.has(w));
+function keywords(jd){const t=tok(jd),f={};t.forEach((w,i)=>{f[w]=(f[w]||0)+1;if(t[i+1])f[w+' '+t[i+1]]=(f[w+' '+t[i+1]]||0)+0.6});return Object.entries(f).filter(([w,c])=>c>=0.6&&!/^\d+$/.test(w)).sort((a,b)=>b[1]-a[1]).map(x=>x[0]).filter((w,i,a)=>!a.some((o,j)=>j<i&&o.includes(w))).slice(0,24)}
+function analyse(cv,jd){
+  const n=AI.norm(cv),lines=cv.split(/\n/).map(s=>s.trim()).filter(Boolean),words=n.split(' ').length;
+  const has={};Object.entries(SECTIONS).forEach(([k,r])=>has[k]=r.test(cv));
+  const email=/[\w.+-]+@[\w-]+\.[\w.]+/.test(cv),phone=/(\+?\d[\d\s]{7,})/.test(cv),li=/linkedin/i.test(cv);
+  const bullets=lines.filter(l=>l.length>25&&!Object.values(SECTIONS).some(r=>r.test(l)&&l.length<30));
+  const metric=bullets.filter(l=>/\d+\s?%|\d{2,}|\bSAR\b|ريال|مليون|ألف/.test(l));
+  const strong=bullets.filter(l=>VERBS.some(v=>AI.norm(l).startsWith(v)||AI.norm(l).includes(' '+v+' ')));
+  const weak=bullets.filter(l=>WEAK.some(w=>l.toLowerCase().includes(w)));
+  const kws=jd?keywords(jd):[];const found=kws.filter(k=>n.includes(k)),missing=kws.filter(k=>!n.includes(k));
+  const sc={};
+  sc.structure=Math.round(((has.summary?1:0)+(has.experience?2:0)+(has.education?1:0)+(has.skills?1.5:0)+(has.certs||has.projects?.5:0))/6*100);
+  sc.contact=Math.round(((email?1:0)+(phone?1:0)+(li?1:0))/3*100);
+  sc.impact=Math.min(100,Math.round((metric.length/Math.max(3,bullets.length))*160+(strong.length/Math.max(3,bullets.length))*60-weak.length*6));
+  sc.keywords=kws.length?Math.round(found.length/kws.length*100):Math.min(100,40+tok(cv).length/6);
+  sc.length=words<150?45:words<250?70:words<900?95:words<1300?75:55;
+  const total=Math.round(sc.structure*.2+sc.contact*.1+sc.impact*.3+sc.keywords*.3+sc.length*.1);
+  const strengths=[],weaknesses=[],tips=[];
+  if(has.experience)strengths.push('قسم الخبرات واضح ومرتب زمنيا.');
+  if(metric.length)strengths.push(`عدد الإنجازات المدعومة بأرقام: ${metric.length}، وهذا أقوى ما يلفت المسؤول عن التوظيف.`);
+  if(email&&phone)strengths.push('بيانات التواصل كاملة وسهلة الوصول.');
+  if(has.skills)strengths.push('قسم المهارات موجود ويسهل على أنظمة ATS قراءته.');
+  if(!has.summary){weaknesses.push('لا يوجد ملخص احترافي في أعلى السيرة.');tips.push('أضف ملخصا من سطرين يذكر المسمى المستهدف وأهم رقم حققته.')}
+  if(!li){weaknesses.push('رابط LinkedIn غير موجود.');tips.push('أضف رابط LinkedIn محدث بنفس المسمى الوظيفي.')}
+  if(metric.length<3){weaknesses.push('الإنجازات قليلة الأرقام، أغلب النقاط وصف مهام وليس نتائج.');tips.push('حوّل كل نقطة إلى نتيجة: ماذا فعلت + بكم + ما الأثر (مثال: رفعت المبيعات 20% خلال 6 أشهر).')}
+  if(weak.length){weaknesses.push(`عدد النقاط التي تبدأ بعبارات ضعيفة مثل «Responsible for» أو «Helped»: ${weak.length}.`);tips.push('ابدأ كل نقطة بفعل قوي: Led, Launched, Increased, Reduced.')}
+  if(missing.length){weaknesses.push(`كلمات مفتاحية من إعلان الوظيفة غير موجودة في السيرة: ${missing.length}.`);tips.push('أضف الكلمات الناقصة التي تملكها فعلا داخل الخبرات والمهارات بنفس صياغة الإعلان.')}
+  if(words<250)tips.push('السيرة قصيرة؛ أضف مشروعا أو إنجازين لكل وظيفة.');
+  tips.push('استخدم تنسيقا بسيطا بعمود واحد وبدون جداول أو صور حتى تقرأها أنظمة ATS بدقة.');
+  const rewrites=weak.slice(0,3).map(l=>({from:l,to:rewrite(l)}));
+  return {total,sc,strengths,weaknesses,tips,found,missing,rewrites,kws:kws.length,words};
+}
+function rewrite(l){let s=l.replace(/^(responsible for|worked on|duties included|helped( the)?|assisted( with)?|involved in)\s*/i,'');const v=/campaign/i.test(s)?'Planned and launched':/social|account|content/i.test(s)?'Managed and grew':/sales|promotion/i.test(s)?'Partnered with sales to drive':/report/i.test(s)?'Built and delivered':'Led';return `${v} ${s.replace(/\.$/,'')}, achieving [add a measurable result, e.g. +25% engagement in 6 months].`}
+async function run(){
+  const cv=$('#cv').value.trim(),jd=$('#jd').value.trim();if(cv.length<80){AI.toast('ارفع السيرة أو الصق نصها أولا');return}
+  const b=$('#go');b.disabled=true;b.innerHTML='<span class="spinner"></span> جاري التحليل';
+  let r=analyse(cv,jd);
+  if(AI.live()){try{const g=await AI.gemini(`حلل هذه السيرة الذاتية${jd?' مقارنة بوصف الوظيفة':''} وأعد JSON فقط بالمفاتيح: total (0 إلى 100), sc {structure,contact,impact,keywords,length} كل منها 0 إلى 100, strengths [نصوص عربية], weaknesses [نصوص عربية], tips [نصوص عربية], found [كلمات], missing [كلمات], rewrites [{from,to}] أعد صياغة أضعف 3 نقاط بلغة السيرة الأصلية.\n\nالسيرة:\n${cv.slice(0,9000)}\n\n${jd?'وصف الوظيفة:\n'+jd.slice(0,4000):''}`,{json:true,temperature:.3,system:'أنت خبير توظيف وأنظمة ATS في السعودية والخليج. كن دقيقا وعمليا ولا تخترع خبرات غير موجودة.'});r={...r,...g,kws:(g.found||[]).length+(g.missing||[]).length}}catch(e){AI.toast('تعذر Gemini، النتيجة من التحليل المحلي')}}
+  draw(r);b.disabled=false;b.textContent='حلّل السيرة';
+}
+function draw(r){
+  const c=r.total>=75?'#0B6E5F':r.total>=55?'#D99A1E':'#B4432B',lab={structure:'الهيكل',contact:'التواصل',impact:'الإنجازات',keywords:'الكلمات المفتاحية',length:'الطول'};
+  const L=a=>(a||[]).map(x=>`<li>${AI.esc(x)}</li>`).join('');
+  $('#report').innerHTML=`
+  <div class="card" style="padding:26px"><div class="score"><div><div class="ring" style="--p:${r.total};--c:${c}"><div><b>${r.total}</b><small>من 100</small></div></div></div>
+  <div><h2 class="verdict">${r.total>=75?'سيرة قوية وجاهزة تقريبا':r.total>=55?'سيرة جيدة تحتاج تحسينات مهمة':'السيرة تحتاج إعادة بناء'}</h2><p class="muted small" style="margin:0">${r.words?r.words+' كلمة، ':''}${r.kws?`تطابق مع الوظيفة ${Math.round((r.found||[]).length/Math.max(1,r.kws)*100)}%`:'أضف وصف وظيفة لقياس التطابق'}</p>
+  <div class="crit">${Object.entries(r.sc).map(([k,v])=>`<div><span>${lab[k]}</span><div class="bar"><i style="width:${v}%"></i></div><b>${v}</b></div>`).join('')}</div></div></div></div>
+  <div class="two" style="margin-top:14px"><div class="card pos"><h3>نقاط القوة</h3><ul class="clean">${L(r.strengths)||'<li class="muted">لا يوجد</li>'}</ul></div><div class="card neg"><h3>نقاط الضعف</h3><ul class="clean">${L(r.weaknesses)||'<li class="muted">لا يوجد</li>'}</ul></div></div>
+  ${r.kws?`<div class="card" style="margin-top:14px"><h3>الكلمات المفتاحية في الإعلان</h3><p class="muted small">موجودة في سيرتك:</p><div class="chips">${(r.found||[]).map(k=>`<span class="chip good">${AI.esc(k)}</span>`).join('')||'<span class="muted small">لا يوجد</span>'}</div><p class="muted small" style="margin-top:12px">ناقصة (أضف ما تملكه فعلا):</p><div class="chips">${(r.missing||[]).map(k=>`<span class="chip bad">${AI.esc(k)}</span>`).join('')}</div></div>`:''}
+  <div class="card" style="margin-top:14px"><h3>كيف تحسّنها</h3><ul class="clean">${L(r.tips)}</ul>
+  ${(r.rewrites||[]).length?`<h3 style="margin-top:20px">إعادة صياغة جاهزة</h3>${r.rewrites.map(x=>`<div class="rew" dir="auto"><s>${AI.esc(x.from)}</s><p>${AI.esc(x.to)}</p><button class="btn ghost sm noprint" onclick="AI.copy(this.previousElementSibling.textContent)">نسخ</button></div>`).join('')}`:''}</div>
+  <div class="row noprint" style="margin-top:14px"><button class="btn" onclick="print()">حفظ التقرير PDF</button><button class="btn ghost" onclick="document.querySelector('#cv').focus()">تعديل وإعادة التحليل</button></div>`;
+  $('#report').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('#go').onclick=run;
+</script>
+</body>
+</html>
