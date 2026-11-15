@@ -1,7 +1,10 @@
 # AI Studio Demo
 
-Live Arabic AI tool demos by Ahmed Hossam: marketing content generator, CV analyzer, customer support assistant, and the Krooki WhatsApp real estate agent showcase.
+Live demos by Ahmed Hossam.
 
-Live: https://ahmedhossamelhamamy.github.io/ai-studio-demo/
+AI tools (Arabic, connected to Gemini through a small proxy, no API key in this repo):
+https://ahmedhossamelhamamy.github.io/ai-studio-demo/
 
-The pages call Gemini through a small proxy, so no API key is stored in this repository.
+Website templates:
+Athar agency and SaaS template: https://ahmedhossamelhamamy.github.io/ai-studio-demo/athar/
+Nawafidh landing pages: https://ahmedhossamelhamamy.github.io/ai-studio-demo/nawafeth/
