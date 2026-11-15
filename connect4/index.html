@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0f24">
+  <meta name="description" content="Connect 4: play against the computer with three difficulty levels.">
+  <title>Connect 4</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f55ff'/%3E%3Ccircle cx='11' cy='11' r='5' fill='%23ff4d6d'/%3E%3Ccircle cx='21' cy='11' r='5' fill='%23ffc83d'/%3E%3Ccircle cx='11' cy='21' r='5' fill='%23ffc83d'/%3E%3Ccircle cx='21' cy='21' r='5' fill='%23ff4d6d'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Top bar: brand + quick settings -->
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <h1>Connect <span>4</span></h1>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="btn-sound" type="button" aria-pressed="true">
+          <svg class="icon-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <svg class="icon-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9.5l5 5M22 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button class="icon-btn lang-btn" id="btn-lang" type="button">EN</button>
+      </div>
+    </header>
+
+    <!-- Scoreboard: also shows whose turn it is -->
+    <section class="scoreboard" aria-label="Score">
+      <div class="player-card" id="card-human" data-player="1">
+        <span class="chip p1" aria-hidden="true"></span>
+        <span class="player-name" data-i18n="you"></span>
+        <strong class="player-score" id="score-human">0</strong>
+      </div>
+      <div class="draw-card">
+        <span data-i18n="draws"></span>
+        <strong id="score-draws">0</strong>
+      </div>
+      <div class="player-card" id="card-ai" data-player="2">
+        <span class="chip p2" aria-hidden="true"></span>
+        <span class="player-name" data-i18n="computer"></span>
+        <strong class="player-score" id="score-ai">0</strong>
+      </div>
+    </section>
+
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <!-- The board always stays left to right, whatever the page language -->
+    <main class="board-wrap">
+      <div class="board" id="board" dir="ltr">
+        <div class="grid">
+          <div class="discs" id="discs"></div>
+          <div class="board-front" id="board-front" aria-hidden="true"></div>
+          <svg class="win-line" id="win-line" viewBox="0 0 7 6" aria-hidden="true"><line/></svg>
+          <div class="columns" id="columns"></div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Game controls -->
+    <section class="controls">
+      <div class="control-group">
+        <span class="control-label" data-i18n="difficulty"></span>
+        <div class="segmented" id="seg-level" role="radiogroup">
+          <button type="button" role="radio" data-value="easy" data-i18n="easy"></button>
+          <button type="button" role="radio" data-value="medium" data-i18n="medium"></button>
+          <button type="button" role="radio" data-value="hard" data-i18n="hard"></button>
+        </div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" data-i18n="firstMove"></span>
+        <div class="segmented" id="seg-first" role="radiogroup">
+          <button type="button" role="radio" data-value="human" data-i18n="you"></button>
+          <button type="button" role="radio" data-value="ai" data-i18n="computer"></button>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="btn btn-ghost" id="btn-undo" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 7 4 12l5 5M4 12h10a6 6 0 0 1 0 12h-2" transform="translate(0 -3)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="undo"></span>
+        </button>
+        <button class="btn btn-primary" id="btn-new" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.6-5.9M20 4v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-i18n="newGame"></span>
+        </button>
+      </div>
+    </section>
+
+    <p class="hint" data-i18n="hint"></p>
+  </div>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <!-- Plain scripts (no build step): the game runs by opening this file -->
+  <script src="js/config.js"></script>
+  <script src="js/board.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/effects.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
