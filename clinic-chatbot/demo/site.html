@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bright Smile Dental Clinic | Sample website with chatbot</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%278%27 fill=%27%230e7c86%27/%3E%3Ctext x=%2716%27 y=%2722%27 font-size=%2718%27 text-anchor=%27middle%27 fill=%27white%27%3E✦%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Sample dental clinic website showing the clinic chatbot widget.">
+<style>
+  :root { --p:#0e7c86; --ink:#14232e; --muted:#5a6a75; --bg:#f4f8f9; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; color:var(--ink); background:#fff; line-height:1.55; }
+  a { color:var(--p); }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  header { border-bottom:1px solid #e6eef0; }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:68px; }
+  .logo { font-weight:800; font-size:20px; letter-spacing:-.2px; display:flex; align-items:center; gap:10px; }
+  .logo span { width:34px; height:34px; border-radius:10px; background:var(--p); color:#fff; display:grid; place-items:center; font-size:18px; }
+  .nav a.cta { background:var(--p); color:#fff; text-decoration:none; padding:10px 18px; border-radius:10px; font-weight:700; font-size:14px; }
+  .hero { background:linear-gradient(180deg,#eaf5f6 0%,#fff 100%); padding:72px 0 64px; }
+  .hero h1 { font-size:clamp(32px,5vw,50px); line-height:1.1; margin:0 0 16px; letter-spacing:-1px; max-width:640px; }
+  .hero p { font-size:18px; color:var(--muted); max-width:560px; margin:0 0 28px; }
+  .btns { display:flex; gap:12px; flex-wrap:wrap; }
+  .btn { border:0; cursor:pointer; padding:14px 22px; border-radius:12px; font-weight:700; font-size:15px; text-decoration:none; }
+  .btn.pri { background:var(--p); color:#fff; }
+  .btn.sec { background:#fff; color:var(--ink); border:1.5px solid #d4e1e4; }
+  section { padding:56px 0; }
+  h2 { font-size:28px; margin:0 0 24px; letter-spacing:-.4px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .card { background:var(--bg); border-radius:16px; padding:22px; }
+  .card h3 { margin:0 0 6px; font-size:17px; }
+  .card p { margin:0; color:var(--muted); font-size:14.5px; }
+  .info { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:16px; }
+  .info div { border:1px solid #e3ecee; border-radius:16px; padding:22px; }
+  .info strong { display:block; margin-bottom:6px; }
+  footer { padding:28px 0 90px; color:var(--muted); font-size:13px; border-top:1px solid #e6eef0; }
+  .note { background:#fff8e6; border:1px solid #f1dfa6; color:#6b5300; font-size:13px; padding:8px 14px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="note">Sample clinic website for demonstration. Click the chat button in the bottom corner to try the assistant. <a href="index.html" style="color:inherit;font-weight:700">Back to the demo</a></div>
+<header>
+  <div class="wrap nav">
+    <div class="logo"><span>✦</span> Bright Smile Dental</div>
+    <a class="cta" href="#" onclick="ClinicChatbot.open();return false;">Book a visit</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="wrap">
+      <h1>Healthy, confident smiles for the whole family</h1>
+      <p>Cleanings, whitening, orthodontics and dental implants, with a caring team that explains every step.</p>
+      <div class="btns">
+        <button class="btn pri" type="button" onclick="ClinicChatbot.open()">Request an appointment</button>
+        <a class="btn sec" href="tel:5550123456">Call (555) 012-3456</a>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Our services</h2>
+      <div class="grid">
+        <div class="card"><h3>Teeth Cleaning</h3><p>Professional cleaning and checkup to keep teeth and gums healthy.</p></div>
+        <div class="card"><h3>Teeth Whitening</h3><p>Safe, professional whitening for a brighter smile.</p></div>
+        <div class="card"><h3>Orthodontics</h3><p>Braces and clear aligners for teens and adults.</p></div>
+        <div class="card"><h3>Dental Implants</h3><p>Long lasting replacement for missing teeth.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap info">
+      <div><strong>Opening hours</strong>Monday to Friday: 9:00 AM to 5:00 PM<br>Saturday and Sunday: Closed</div>
+      <div><strong>Location</strong>123 Main Street, Suite 200<br>Springfield, USA</div>
+      <div><strong>Contact</strong>(555) 012-3456<br>appointments@brightsmile.example</div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">© Bright Smile Dental Clinic (sample). All rights reserved.</div></footer>
+
+<!-- Clinic chatbot: this is the only line needed on a real website -->
+<script src="../chatbot.min.js?v=3" data-config="../clinic-config.js?v=3" defer></script>
+</body>
+</html>

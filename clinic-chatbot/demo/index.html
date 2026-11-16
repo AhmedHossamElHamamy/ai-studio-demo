@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinic Assistant: Standard vs AI | Bright Smile Dental Clinic demo</title>
+<meta name="description" content="Website and WhatsApp assistant for clinics. Compare the Standard version and the AI version side by side.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230e7c86'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="demo.css?v=3">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><i>✦</i> Clinic Assistant <small>Bright Smile Dental demo</small></a>
+    <nav class="nav">
+      <a class="on" href="index.html">Standard vs AI</a>
+      <a href="whatsapp.html">WhatsApp</a>
+      <a href="site.html">On a clinic website</a>
+      <a href="#install">Install</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <span class="eyebrow">Website · WhatsApp · One assistant</span>
+    <h1>Answers patient questions and collects appointment requests, 24/7</h1>
+    <p>Two versions of the same assistant, side by side. Both answer only from the clinic's own information and send every appointment request to the clinic's email.</p>
+  </div>
+
+  <div class="wrap split">
+    <article class="side" aria-labelledby="h-std">
+      <div class="side-h">
+        <div><h2 id="h-std">Standard</h2><p>Built in engine. No API key needed.</p></div>
+        <span class="tag">No running cost</span>
+      </div>
+      <div class="frame" id="bot-standard"></div>
+      <p class="try">Try: <button type="button" data-bot="standard">are you open saturday?</button><button type="button" data-bot="standard">do you take insurnace</button><button type="button" data-bot="standard">book whitening</button></p>
+      <ul class="facts">
+        <li>Answers hours, location, services and FAQ from the clinic's file</li>
+        <li>Understands typos and common wording ("insurnace", "braces", "where r u")</li>
+        <li>Never makes up an answer: if it isn't in the file, it says so and offers to take the visitor's details</li>
+        <li>Collects name, phone or email, and preferred day and time, then emails the clinic</li>
+      </ul>
+      <div class="cost free"><b>Running cost</b>None. Runs entirely in the visitor's browser.</div>
+    </article>
+
+    <article class="side ai" aria-labelledby="h-ai">
+      <div class="side-h">
+        <div><h2 id="h-ai">AI version</h2><p>Understands anything the patient writes.</p></div>
+        <span class="tag ai">Requires an AI API key</span>
+      </div>
+      <div class="frame" id="bot-ai"></div>
+      <p class="try">Try: <button type="button" data-bot="ai">do u guys take ppo or what</button><button type="button" data-bot="ai">and are you open fridays?</button><button type="button" data-bot="ai">I'm Sara, book me for implants</button></p>
+      <ul class="facts">
+        <li>Understands any wording, follow up questions, and other languages</li>
+        <li>Still answers <b>only</b> from the clinic's information. Replies with prices or numbers that aren't in the file are blocked automatically</li>
+        <li>Picks up name, phone and email from a sentence and skips those questions</li>
+        <li>If the AI is slow or down, the built in engine answers instantly</li>
+      </ul>
+      <div class="cost paid"><b>Needs your own API key</b>Connect your own key from <b>Google Gemini, OpenAI or Anthropic Claude</b>. Usage is billed by your AI provider at their prices. Example: Gemini 3.1 Flash-Lite costs about <b>$0.70 per 1,000 patient messages</b>.</div>
+    </article>
+  </div>
+
+  <section class="block">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>The same assistant on WhatsApp Business</h2>
+          <p>One brain, two channels. The WhatsApp bot uses the same clinic file, the same answers and the same booking steps as the website. Edit the file once, both update.</p>
+          <a class="btn light" href="whatsapp.html">See it on WhatsApp →</a>
+        </div>
+        <div class="flow" aria-hidden="true">
+          <div><b>Website chat</b>Floating button or embedded in any page</div>
+          <div class="mid">clinic-config.js · one assistant</div>
+          <div><b>WhatsApp Business</b>Same answers, buttons and booking</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="install" style="padding-top:8px">
+    <div class="wrap">
+      <h2>Works on any website</h2>
+      <p class="lead">WordPress, Wix, Squarespace, Webflow, Shopify, or a custom site. Upload two files and add one line.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="ic">◱</div>
+          <h3>Floating chat button</h3>
+          <p>Paste before <code>&lt;/body&gt;</code> on any site.</p>
+<pre class="code"><span class="t">&lt;script</span> <span class="a">src</span>=<span class="s">"chatbot.min.js"</span>
+  <span class="a">data-config</span>=<span class="s">"clinic-config.js"</span> <span class="a">defer</span><span class="t">&gt;&lt;/script&gt;</span></pre>
+        </div>
+        <div class="card">
+          <div class="ic">▤</div>
+          <h3>Inside a page section</h3>
+          <p>Show the chat inside a "Book online" or "Contact" section.</p>
+<pre class="code"><span class="t">&lt;div</span> <span class="a">id</span>=<span class="s">"chat"</span> <span class="a">style</span>=<span class="s">"height:600px"</span><span class="t">&gt;&lt;/div&gt;</span>
+<span class="t">&lt;script</span> <span class="a">src</span>=<span class="s">"chatbot.min.js"</span> <span class="a">data-target</span>=<span class="s">"#chat"</span>
+  <span class="a">data-config</span>=<span class="s">"clinic-config.js"</span> <span class="a">defer</span><span class="t">&gt;&lt;/script&gt;</span></pre>
+        </div>
+        <div class="card">
+          <div class="ic">↗</div>
+          <h3>Direct link</h3>
+          <p>A full page chat to share anywhere: Google Business Profile, Instagram bio, emails, QR codes.</p>
+          <p style="margin-top:12px"><a href="chat.html">Open the direct chat link →</a></p>
+        </div>
+        <div class="card">
+          <div class="ic">▣</div>
+          <h3>Builders that block scripts</h3>
+          <p>Use an embed block with an iframe of the direct link.</p>
+<pre class="code"><span class="t">&lt;iframe</span> <span class="a">src</span>=<span class="s">"https://yoursite.com/chat.html"</span>
+  <span class="a">style</span>=<span class="s">"width:100%;height:620px;border:0"</span><span class="t">&gt;&lt;/iframe&gt;</span></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap">Demo for Bright Smile Dental Clinic, a sample clinic. Appointment requests in this demo are not sent: the assistant shows the email the clinic would receive.</div></footer>
+
+<script src="../chatbot.min.js?v=3" data-manual></script>
+<script src="../clinic-config.js?v=3"></script>
+<script>
+  (function () {
+    var base = window.ClinicBotConfig;
+    function variant(ai) {
+      var c = JSON.parse(JSON.stringify(base));
+      c.ai.enabled = ai;
+      c.instanceId = ai ? "demo-ai" : "demo-standard";
+      c.branding.badge = ai ? "AI" : "Standard";
+      return c;
+    }
+    var bots = { standard: ClinicChatbot.mount("#bot-standard", variant(false)), ai: ClinicChatbot.mount("#bot-ai", variant(true)) };
+    document.querySelectorAll(".try button").forEach(function (b) {
+      b.addEventListener("click", function () { var w = bots[b.dataset.bot]; if (w && !w.engine.state.busy) w.engine.userText(b.textContent); });
+    });
+  })();
+</script>
+</body>
+</html>

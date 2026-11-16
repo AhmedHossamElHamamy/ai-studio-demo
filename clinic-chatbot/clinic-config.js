@@ -137,29 +137,45 @@ window.ClinicBotConfig = {
   ],
 
   /* 5. APPOINTMENT REQUESTS ------------------------------------------
-   * The bot asks, one at a time: service, full name, phone, email, day, time, optional note.
-   * Days and times are offered from the opening hours above, and closed days are refused.
+   * The bot asks one detail at a time: full name, phone, email, preferred day, preferred time.
+   * contact: "either" = phone OR email, at least one (each asked separately, the other can be skipped)
+   *          "phone" / "email" = that one is required, "both" = both required
+   * Days and times come from the opening hours above; closed days and times are refused.
    */
   booking: {
-    askService: true,           // ask which service (uses the services list above)
-    emailRequired: false,       // false = the visitor can skip the email; true = email is required
-    askNotes: true,             // ask for an optional note at the end
+    contact: "either",
+    askService: false,          // true = also ask which service (from the services list)
+    askNotes: false,            // true = also ask for an optional note
     daysToOffer: 5,             // how many upcoming open days to show as buttons
     maxRequestsPerSession: 3
   },
 
-  /* 5b. AI ANSWERS (optional) ------------------------------------------
-   * With AI on, the bot understands any wording and follow up questions, but it still answers ONLY
-   * from this file. If the AI is slow or unavailable, the built in engine answers instantly instead.
-   * endpoint: your proxy URL (see README, "AI setup"). Never put an API key in this file.
+  /* 5b. AI VERSION (optional) ------------------------------------------
+   * enabled: false = Standard version (built in engine, no API key, no running cost).
+   * enabled: true  = AI version: understands any wording, still answers ONLY from this file.
+   *   It needs YOUR OWN AI API key (Google Gemini, OpenAI or Anthropic Claude), kept on your proxy
+   *   server (proxy/worker.js), never in this file. Usage is billed by your AI provider.
+   *   If the AI is slow or unavailable, the built in engine answers instantly instead.
    */
   ai: {
     enabled: true,
     endpoint: "https://gemini-proxy.ahmed110hossam.workers.dev/",
+    format: "gemini",            // "proxy" for proxy/worker.js (Gemini, OpenAI or Claude), "gemini" for a raw Gemini proxy
     model: "gemini-3.1-flash-lite",
     fallbackModels: ["gemini-3.1-flash-lite"],   // one quick retry if the AI is busy
     timeoutMs: 9000,
     maxCallsPerSession: 40
+  },
+
+  /* 5c. WHATSAPP (optional) ---------------------------------------------
+   * The same assistant can answer on WhatsApp Business (see README, "WhatsApp").
+   * showButton: adds a WhatsApp button in the chat header so visitors can continue on WhatsApp.
+   */
+  whatsapp: {
+    number: "+1 555 012 3456",
+    showButton: true,
+    link: "whatsapp.html",      // leave empty on real sites: the button then opens wa.me/<number>
+    greeting: "Hi Bright Smile!"
   },
 
   /* 6. WHERE APPOINTMENT REQUESTS ARE SENT -----------------------------

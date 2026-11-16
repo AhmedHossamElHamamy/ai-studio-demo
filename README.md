@@ -14,4 +14,4 @@ Connect 4 against the computer (three levels, two designs): https://ahmedhossame
 Neon design: https://ahmedhossamelhamamy.github.io/ai-studio-demo/connect4/?theme=neon
 
 Chatbots:
-Clinic website chatbot (FAQ answers and appointment requests, sample dental clinic): https://ahmedhossamelhamamy.github.io/ai-studio-demo/clinic-chatbot/
+Clinic assistant for websites and WhatsApp, Standard and AI versions side by side (sample dental clinic): https://ahmedhossamelhamamy.github.io/ai-studio-demo/clinic-chatbot/
