@@ -136,11 +136,30 @@ window.ClinicBotConfig = {
     }
   ],
 
-  /* 5. APPOINTMENT REQUESTS ------------------------------------------ */
+  /* 5. APPOINTMENT REQUESTS ------------------------------------------
+   * The bot asks, one at a time: service, full name, phone, email, day, time, optional note.
+   * Days and times are offered from the opening hours above, and closed days are refused.
+   */
   booking: {
-    timeOptions: ["Weekday morning (9 AM to 12 PM)", "Weekday afternoon (12 PM to 5 PM)", "As soon as possible"],
-    askNotes: true,
+    askService: true,           // ask which service (uses the services list above)
+    emailRequired: false,       // false = the visitor can skip the email; true = email is required
+    askNotes: true,             // ask for an optional note at the end
+    daysToOffer: 5,             // how many upcoming open days to show as buttons
     maxRequestsPerSession: 3
+  },
+
+  /* 5b. AI ANSWERS (optional) ------------------------------------------
+   * With AI on, the bot understands any wording and follow up questions, but it still answers ONLY
+   * from this file. If the AI is slow or unavailable, the built in engine answers instantly instead.
+   * endpoint: your proxy URL (see README, "AI setup"). Never put an API key in this file.
+   */
+  ai: {
+    enabled: true,
+    endpoint: "https://gemini-proxy.ahmed110hossam.workers.dev/",
+    model: "gemini-3.1-flash-lite",
+    fallbackModels: ["gemini-3.1-flash-lite"],   // one quick retry if the AI is busy
+    timeoutMs: 9000,
+    maxCallsPerSession: 40
   },
 
   /* 6. WHERE APPOINTMENT REQUESTS ARE SENT -----------------------------
