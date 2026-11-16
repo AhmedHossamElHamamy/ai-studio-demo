@@ -43,22 +43,22 @@ window.ClinicBotConfig = {
     {
       name: "Teeth Cleaning",
       keywords: ["cleaning", "dental cleaning", "checkup", "scale", "tartar", "plaque", "hygiene"],
-      description: "A professional cleaning removes plaque and tartar, followed by a polish and a check of your teeth and gums. Most people benefit from a cleaning every 6 months."
+      description: "A professional cleaning removes plaque and tartar, followed by a polish and a check of your teeth and gums. Most people benefit from a cleaning every 6 months. New patient exam, cleaning and X-rays: $99 before insurance."
     },
     {
       name: "Teeth Whitening",
       keywords: ["whitening", "whiten", "white teeth", "stains", "yellow teeth", "bleaching"],
-      description: "Professional whitening safely brightens your smile and removes stains from coffee, tea and more. Our dentist will check that whitening is right for you before treatment."
+      description: "Professional whitening safely brightens your smile and removes stains from coffee, tea and more. Our dentist will check that whitening is right for you before treatment. In office whitening: $349. Take home trays: $199."
     },
     {
       name: "Orthodontics",
       keywords: ["braces", "invisalign", "clear aligners", "straighten", "crooked teeth", "orthodontics"],
-      description: "We offer traditional braces and clear aligners to straighten teeth and improve your bite, for teens and adults. Your treatment plan starts with a consultation."
+      description: "We offer traditional braces and clear aligners to straighten teeth and improve your bite, for teens and adults. Your treatment plan starts with a free consultation."
     },
     {
       name: "Dental Implants",
       keywords: ["implants", "implant", "missing tooth", "replace tooth", "missing teeth"],
-      description: "Dental implants are a long lasting way to replace missing teeth. They look and work like natural teeth. A consultation is needed to check if implants are right for you."
+      description: "Dental implants are a long lasting way to replace missing teeth. They look and work like natural teeth. A free consultation checks if implants are right for you."
     }
   ],
 
@@ -71,8 +71,8 @@ window.ClinicBotConfig = {
     {
       id: "insurance",
       question: "Do you accept insurance?",
-      keywords: ["insurance", "dental insurance", "ppo", "accept insurance", "covered", "coverage", "medicaid"],
-      answer: "We accept most major PPO dental insurance plans. Coverage depends on your plan, so please share your insurance details when you request an appointment and our team will verify your benefits before your visit."
+      keywords: ["insurance", "dental insurance", "ppo", "accept insurance", "covered", "coverage", "medicaid", "delta", "delta dental", "cigna", "aetna", "metlife", "guardian", "in network"],
+      answer: "We are in network with **Delta Dental, Cigna, Aetna, MetLife and Guardian** PPO plans, and we accept most other PPO plans as out of network. Share your insurance details when you request an appointment and our team will check your benefits before your visit."
     },
     {
       id: "payment",
@@ -83,8 +83,8 @@ window.ClinicBotConfig = {
     {
       id: "price",
       question: "How much does a treatment cost?",
-      keywords: ["price", "cost", "how much", "fees", "expensive", "quote"],
-      answer: "Costs depend on your needs and your insurance, so we give an exact price after your exam. Our team is happy to give you an estimate when they contact you to confirm your appointment."
+      keywords: ["price", "cost", "how much", "fees", "expensive", "quote", "new patient special", "exam price"],
+      answer: "Our prices before insurance:\n• New patient exam, cleaning and X-rays: **$99**\n• Professional teeth whitening (in office): **$349**\n• Take home whitening trays: **$199**\n• Implant or Invisalign consultation: **Free**\nOther treatments are priced after your exam, and our team will check what your insurance covers."
     },
     {
       id: "new-patients",

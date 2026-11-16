@@ -4,78 +4,168 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Bright Smile Dental Clinic · Ask us anything or book a visit</title>
-<meta name="description" content="Ask about hours, services or insurance, or request an appointment in under a minute. Available 24/7.">
+<meta name="description" content="Ask about hours, services, insurance and prices, or request an appointment in under a minute. Available 24/7.">
 <meta property="og:title" content="Bright Smile Dental Clinic · Your 24/7 front desk assistant">
-<meta property="og:description" content="Ask about hours, services or insurance, or request an appointment in under a minute.">
+<meta property="og:description" content="Ask about hours, services, insurance and prices, or request an appointment in under a minute.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="clinic.jpg">
 <meta name="theme-color" content="#0e7c86">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%230e7c86'/%3E%3Cpath transform='translate(3.6 3.6) scale(.7)' fill='white' d='M7.5 2.6c-2 0-3.9 1.5-3.9 4.4 0 2 .7 3.6 1.2 5.3.6 2 .8 4.1 1.2 6.2.3 1.6.8 3 1.9 3 1.3 0 1.6-1.6 1.9-3.4.3-1.7.8-3.1 2.2-3.1s1.9 1.4 2.2 3.1c.3 1.8.6 3.4 1.9 3.4 1.1 0 1.6-1.4 1.9-3 .4-2.1.6-4.2 1.2-6.2.5-1.7 1.2-3.3 1.2-5.3 0-2.9-1.9-4.4-3.9-4.4-1.6 0-2.6 1-4.5 1s-2.9-1-4.5-1Z'/%3E%3C/svg%3E">
 <link rel="preload" as="image" href="clinic.jpg">
 <style>
-  :root{--p:#0e7c86;--pd:#0b656d;--pt:#e7f3f4;--ink:#101828;--ink2:#475467;--ink3:#667085;--line:#eaecf0}
+  :root{--p:#0e7c86;--pd:#0b656d;--pt:#e7f3f4;--pb:#cfe7e9;--ink:#101828;--ink2:#475467;--ink3:#667085;--line:#eaecf0;--gold:#f5a623}
   *{box-sizing:border-box}
   html,body{margin:0}
+  html{scroll-behavior:smooth}
   body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;
-    background:radial-gradient(1100px 560px at 88% -12%,#d5edef 0%,rgba(213,237,239,0) 62%),linear-gradient(180deg,#f3f9f9 0%,#fff 72%);min-height:100vh}
+    background:radial-gradient(1100px 560px at 88% -12%,#d5edef 0%,rgba(213,237,239,0) 62%),linear-gradient(180deg,#f3f9f9 0%,#fff 900px);min-height:100vh}
   svg{display:block}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+
+  /* header */
   .top{max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
   .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:18.5px;letter-spacing:-.3px}
   .logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--p),var(--pd));display:grid;place-items:center;box-shadow:0 8px 16px -8px rgba(14,124,134,.7)}
   .brand small{display:block;font-size:12px;font-weight:500;color:var(--ink3);letter-spacing:0;margin-top:1px}
-  .call{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px;background:#fff;border:1px solid var(--line);padding:9px 14px;border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.05)}
+  .acts{display:flex;align-items:center;gap:10px}
+  .rate{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:var(--ink2);text-decoration:none}
+  .rate .st{color:var(--gold);letter-spacing:1px}
+  .call,.book{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14.5px;padding:9px 14px;border-radius:12px;cursor:pointer;font-family:inherit}
+  .call{color:var(--ink);background:#fff;border:1px solid var(--line);box-shadow:0 1px 2px rgba(16,24,40,.05)}
   .call:hover{border-color:#d0d5dd}
+  .book{border:0;background:var(--ink);color:#fff}
+  .book:hover{background:#1d2939}
 
-  main{max-width:1200px;margin:0 auto;padding:12px 28px 36px;display:grid;
-    grid-template-columns:minmax(0,1fr) minmax(0,450px);grid-template-areas:"intro chat" "photo chat";column-gap:56px;row-gap:28px;align-items:start}
+  /* hero */
+  main{max-width:1200px;margin:0 auto;padding:12px 28px 24px;display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,450px);grid-template-areas:"intro chat" "inbox chat";column-gap:56px;row-gap:26px;align-items:start}
   .intro{grid-area:intro;padding-top:8px}
   .chat{grid-area:chat;height:min(700px,calc(100vh - 120px));min-height:600px;position:sticky;top:20px}
-  .photo{grid-area:photo}
-
-  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--p);background:#fff;border:1px solid #cfe7e9;padding:6px 12px;border-radius:999px}
+  .inbox-wrap{grid-area:inbox}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--p);background:#fff;border:1px solid var(--pb);padding:6px 12px;border-radius:999px}
   .eyebrow b{width:8px;height:8px;border-radius:50%;background:#12b76a;box-shadow:0 0 0 3px #d1fadf}
   h1{font-size:clamp(34px,4.4vw,52px);line-height:1.06;letter-spacing:-1.4px;margin:16px 0 14px}
   h1 span{color:var(--p)}
   .intro p{font-size:17.5px;line-height:1.6;color:var(--ink2);margin:0 0 22px;max-width:540px}
   .ask{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
   .ask small{font-size:13px;font-weight:600;color:var(--ink3);margin-right:2px}
-  .ask button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14px;font-weight:600;color:var(--pd);background:#fff;border:1px solid #cfe7e9;border-radius:999px;padding:9px 15px;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:background .15s,color .15s,border-color .15s,transform .15s}
+  .ask button{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:14px;font-weight:600;color:var(--pd);background:#fff;border:1px solid var(--pb);border-radius:999px;padding:9px 15px;cursor:pointer;box-shadow:0 1px 2px rgba(16,24,40,.05);transition:background .15s,color .15s,border-color .15s,transform .15s}
   .ask button:hover{background:var(--p);border-color:var(--p);color:#fff}
   .ask button:active{transform:scale(.97)}
   .ask button svg{opacity:.75}
 
-  .photo-card{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(16,24,40,.45);aspect-ratio:16/9;background:#e9eef0}
-  .photo-card img{width:100%;height:100%;object-fit:cover;display:block}
-  .photo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,40,0) 45%,rgba(16,24,40,.5) 100%)}
-  .facts{position:absolute;left:14px;right:14px;bottom:14px;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
-  .fact{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:14px;padding:11px 12px}
-  .fact .ic{flex:none;width:32px;height:32px;border-radius:10px;background:var(--pt);display:grid;place-items:center}
-  .fact small{display:block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3)}
-  .fact b{display:block;font-size:13.5px;font-weight:600;line-height:1.35}
+  /* front desk inbox */
+  .inbox-label{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 10px}
+  .inbox-label h2{margin:0;font-size:15px;letter-spacing:-.1px;display:flex;align-items:center;gap:8px}
+  .inbox-label span{font-size:13px;color:var(--ink3)}
+  .inbox{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 20px 44px -26px rgba(16,24,40,.35)}
+  .ib-bar{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);background:#fcfcfd}
+  .dots{display:flex;gap:6px}.dots i{width:10px;height:10px;border-radius:50%;background:#e4e7ec;display:block}
+  .dots i:nth-child(1){background:#fda29b}.dots i:nth-child(2){background:#fec84b}.dots i:nth-child(3){background:#75e0a7}
+  .ib-title{font-weight:650;font-size:14px}
+  .ib-title small{display:block;font-weight:500;font-size:12px;color:var(--ink3)}
+  .ib-count{margin-left:auto;font-size:12px;font-weight:700;color:#fff;background:#d92d20;border-radius:999px;padding:3px 9px}
+  .ib-count[hidden]{display:none}
+  .ib-body{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr);min-height:236px}
+  .ib-list{border-right:1px solid var(--line);background:#fcfcfd}
+  .mail{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:none;padding:12px 14px;cursor:pointer;font:inherit;color:inherit}
+  .mail:hover{background:#f5f8f8}
+  .mail.on{background:var(--pt)}
+  .mail .r1{display:flex;justify-content:space-between;gap:8px;font-size:13.5px;font-weight:650}
+  .mail .r1 time{font-weight:500;font-size:12px;color:var(--ink3);flex:none}
+  .mail .r2{font-size:12.5px;color:var(--ink2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mail .new{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;color:#fff;background:var(--p);border-radius:6px;padding:2px 6px;margin-right:6px;vertical-align:1px}
+  .mail.fresh{animation:land .9s ease}
+  @keyframes land{0%{background:#fef0c7;transform:translateY(-6px);opacity:0}25%{opacity:1;transform:none}100%{background:var(--pt)}}
+  .ib-view{padding:16px 18px;min-width:0}
+  .ib-empty{height:100%;display:grid;place-items:center;text-align:center;color:var(--ink3);font-size:14px;padding:10px}
+  .ib-empty b{display:block;color:var(--ink);font-size:15px;margin-bottom:4px}
+  .ib-view h3{margin:0 0 4px;font-size:15.5px;letter-spacing:-.1px}
+  .ib-meta{font-size:12.5px;color:var(--ink3);margin-bottom:12px}
+  .ib-rows{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px;margin:0}
+  .ib-rows dt{color:var(--ink3)}
+  .ib-rows dd{margin:0;font-weight:600;overflow-wrap:anywhere}
+  .ib-note{margin-top:12px;font-size:12.5px;color:var(--ink2);background:#f9fafb;border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+  .toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(120%);background:var(--ink);color:#fff;border-radius:14px;padding:11px 12px 11px 16px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;box-shadow:0 18px 40px -10px rgba(16,24,40,.5);transition:transform .35s cubic-bezier(.2,.9,.3,1.2);z-index:50;max-width:calc(100vw - 24px)}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+  .toast button{border:0;background:#fff;color:var(--ink);font:inherit;font-size:13px;font-weight:700;border-radius:9px;padding:7px 11px;cursor:pointer}
 
-  footer{max-width:1200px;margin:0 auto;padding:4px 28px 28px;color:var(--ink3);font-size:12.5px;text-align:center}
+  /* sections */
+  section.blk{max-width:1200px;margin:0 auto;padding:30px 28px}
+  .blk h2.sec{font-size:clamp(24px,2.6vw,30px);letter-spacing:-.6px;margin:0 0 6px}
+  .blk p.sub{color:var(--ink2);margin:0 0 22px;font-size:16px}
+  .photo-card{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 24px 50px -24px rgba(16,24,40,.45);aspect-ratio:21/8;background:#e9eef0}
+  .photo-card img{width:100%;height:100%;object-fit:cover;display:block}
+  .photo-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,24,40,0) 40%,rgba(16,24,40,.55) 100%)}
+  .facts{position:absolute;left:16px;right:16px;bottom:16px;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .fact{display:flex;gap:10px;align-items:flex-start;background:rgba(255,255,255,.93);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:14px;padding:12px 14px}
+  .ic{flex:none;width:34px;height:34px;border-radius:10px;background:var(--pt);display:grid;place-items:center}
+  .fact small,.card small.k{display:block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--ink3)}
+  .fact b{display:block;font-size:14px;font-weight:600;line-height:1.35}
+
+  .duo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .card h3{margin:0 0 4px;font-size:18px;letter-spacing:-.2px;display:flex;align-items:center;gap:10px}
+  .card p.d{margin:0 0 18px;color:var(--ink2);font-size:14.5px}
+  .ins{display:flex;flex-wrap:wrap;gap:10px}
+  .ins span{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;letter-spacing:-.1px;color:var(--ink);background:#f9fafb;border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+  .ins span i{width:8px;height:8px;border-radius:50%;background:#12b76a;display:block}
+  .ins-note{margin:14px 0 0;font-size:13px;color:var(--ink3)}
+  .prices{list-style:none;margin:0;padding:0}
+  .prices li{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:15px}
+  .prices li:last-child{border-bottom:0}
+  .prices li span{color:var(--ink2)}
+  .prices li b{font-size:16px;white-space:nowrap}
+  .prices li b.free{color:#067647}
+  .price-note{margin:10px 0 0;font-size:13px;color:var(--ink3)}
+
+  .reviews{display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:20px;align-items:stretch}
+  .score{background:linear-gradient(160deg,var(--p),var(--pd));color:#fff;border-radius:22px;padding:26px;display:flex;flex-direction:column;justify-content:center}
+  .score .big{font-size:58px;font-weight:750;letter-spacing:-2px;line-height:1}
+  .score .stars{font-size:22px;letter-spacing:3px;color:#ffd666;margin:8px 0 6px}
+  .score p{margin:0;color:#d4f0f2;font-size:14px}
+  .score .tag{display:inline-block;margin-top:14px;font-size:11.5px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;background:rgba(255,255,255,.16);border-radius:999px;padding:5px 10px;align-self:flex-start}
+  .rv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+  .rv figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:12px}
+  .rv .stars{color:var(--gold);letter-spacing:2px;font-size:15px}
+  .rv blockquote{margin:0;font-size:15px;line-height:1.55;color:var(--ink)}
+  .rv figcaption{margin-top:auto;display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:650}
+  .rv figcaption i{width:34px;height:34px;border-radius:50%;background:var(--pt);color:var(--pd);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:13px}
+  .rv figcaption small{display:block;font-weight:500;color:var(--ink3);font-size:12.5px}
+
+  footer{max-width:1200px;margin:0 auto;padding:10px 28px 32px;color:var(--ink3);font-size:12.5px;text-align:center}
 
   @media (max-width:980px){
-    main{grid-template-columns:1fr;grid-template-areas:"intro" "chat" "photo";row-gap:22px}
+    main{grid-template-columns:1fr;grid-template-areas:"intro" "chat" "inbox";row-gap:22px}
     .intro{text-align:center}
     .intro p{margin-left:auto;margin-right:auto}
     .ask{justify-content:center}
     .chat{position:static;height:640px;min-height:0}
+    .duo,.reviews{grid-template-columns:1fr}
+    .rv{grid-template-columns:1fr}
+    .photo-card{aspect-ratio:16/9}
+    .rate{display:none}
   }
   @media (max-width:640px){
     .top{padding:14px 16px}
     .brand small,.call span{display:none}
-    main{padding:2px 12px 24px}
+    .book{padding:9px 12px;font-size:14px}
+    main{padding:2px 12px 16px}
+    section.blk{padding:22px 12px}
     h1{font-size:32px;letter-spacing:-.8px;margin:12px 0 10px}
     .intro p{font-size:15.5px;margin-bottom:16px}
     .ask small{width:100%;margin:0 0 2px}
     .ask button{font-size:13.5px;padding:8px 13px}
     .chat{height:76vh;height:76dvh}
+    .ib-body{grid-template-columns:1fr}
+    .ib-list{border-right:0}
     .photo-card{aspect-ratio:auto}
     .photo-card img{height:200px}
     .photo-card::after{display:none}
     .facts{position:static;grid-template-columns:1fr;padding:12px;gap:8px;background:#fff}
     .fact{background:#f9fafb;border:1px solid var(--line)}
+    .card{padding:18px;border-radius:18px}
+    .score .big{font-size:48px}
   }
 </style>
 </head>
@@ -85,40 +175,108 @@
     <span class="logo"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="#fff" d="M7.5 2.6c-2 0-3.9 1.5-3.9 4.4 0 2 .7 3.6 1.2 5.3.6 2 .8 4.1 1.2 6.2.3 1.6.8 3 1.9 3 1.3 0 1.6-1.6 1.9-3.4.3-1.7.8-3.1 2.2-3.1s1.9 1.4 2.2 3.1c.3 1.8.6 3.4 1.9 3.4 1.1 0 1.6-1.4 1.9-3 .4-2.1.6-4.2 1.2-6.2.5-1.7 1.2-3.3 1.2-5.3 0-2.9-1.9-4.4-3.9-4.4-1.6 0-2.6 1-4.5 1s-2.9-1-4.5-1Z"/></svg></span>
     <div>Bright Smile Dental<small>Family &amp; cosmetic dentistry</small></div>
   </div>
-  <a class="call" href="tel:+15550123456"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg><span>(555) 012-3456</span></a>
+  <div class="acts">
+    <a class="rate" href="#reviews"><span class="st">★★★★★</span>4.9 rating</a>
+    <a class="call" href="tel:+15550123456"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z"/></svg><span>(555) 012-3456</span></a>
+    <button class="book" type="button" id="bookTop">Book a visit</button>
+  </div>
 </header>
 
 <main>
   <section class="intro">
     <span class="eyebrow"><b></b> Online 24/7</span>
     <h1>Questions about your smile? <span>Just ask.</span></h1>
-    <p>Get instant answers about our hours, services and insurance, or request an appointment in under a minute, any time of day.</p>
+    <p>Get instant answers about our hours, services, insurance and prices, or request an appointment in under a minute, any time of day.</p>
     <div class="ask" aria-label="Try a question">
       <small>Try asking:</small>
       <button type="button" data-q="What are your hours?"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>What are your hours?</button>
       <button type="button" data-q="Tell me about your teeth whitening services"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4Z"/></svg>Teeth whitening services</button>
+      <button type="button" data-q="Do you take Delta Dental?"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3Z"/></svg>Do you take Delta Dental?</button>
       <button type="button" data-q="I'd like to book an appointment"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></svg>Book an appointment</button>
     </div>
   </section>
 
   <div class="chat" id="chat" aria-label="Chat with Bright Smile Dental Clinic"></div>
 
-  <section class="photo">
-    <div class="photo-card">
-      <img src="clinic.jpg?v=6" width="1400" height="933" alt="A bright, modern treatment room at Bright Smile Dental Clinic" loading="eager" decoding="async">
-      <div class="facts">
-        <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Hours</small><b>Mon to Fri, 9 AM to 5 PM</b></div></div>
-        <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 3.6c-1.8 0-3.4 1.3-3.4 3.9 0 1.8.6 3.2 1.1 4.7.5 1.8.7 3.6 1.1 5.5.3 1.4.7 2.7 1.7 2.7 1.1 0 1.4-1.4 1.7-3 .3-1.5.7-2.8 1.8-2.8s1.5 1.3 1.8 2.8c.3 1.6.6 3 1.7 3 1 0 1.4-1.3 1.7-2.7.4-1.9.6-3.7 1.1-5.5.5-1.5 1.1-2.9 1.1-4.7 0-2.6-1.6-3.9-3.4-3.9-1.4 0-2.3.9-4 .9s-2.6-.9-4-.9Z"/></svg></span><div><small>Services</small><b>Cleaning, whitening, braces, implants</b></div></div>
-        <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg></span><div><small>Location</small><b>123 Main Street, Springfield</b></div></div>
+  <section class="inbox-wrap" id="inbox" aria-label="Front Desk Inbox">
+    <div class="inbox-label">
+      <h2><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5.5 5h13L21 13v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6L5.5 5Z"/></svg>Front Desk Inbox</h2>
+      <span>What your receptionist receives</span>
+    </div>
+    <div class="inbox">
+      <div class="ib-bar">
+        <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="ib-title">Inbox<small>frontdesk@brightsmile.example</small></div>
+        <span class="ib-count" id="ibCount" hidden>1 new</span>
+      </div>
+      <div class="ib-body">
+        <div class="ib-list" id="ibList"></div>
+        <div class="ib-view" id="ibView">
+          <div class="ib-empty"><div><b>Book in the chat to see it arrive</b>Your appointment request lands here the moment you send it.</div></div>
+        </div>
       </div>
     </div>
   </section>
 </main>
 
-<footer>Bright Smile Dental Clinic is a demo clinic. Appointment requests here are not sent to a real clinic.</footer>
+<section class="blk">
+  <div class="photo-card">
+    <img src="clinic.jpg" width="1400" height="933" alt="A bright, modern treatment room at Bright Smile Dental Clinic" loading="lazy" decoding="async">
+    <div class="facts">
+      <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>Hours</small><b>Mon to Fri, 9 AM to 5 PM</b></div></div>
+      <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.5 3.6c-1.8 0-3.4 1.3-3.4 3.9 0 1.8.6 3.2 1.1 4.7.5 1.8.7 3.6 1.1 5.5.3 1.4.7 2.7 1.7 2.7 1.1 0 1.4-1.4 1.7-3 .3-1.5.7-2.8 1.8-2.8s1.5 1.3 1.8 2.8c.3 1.6.6 3 1.7 3 1 0 1.4-1.3 1.7-2.7.4-1.9.6-3.7 1.1-5.5.5-1.5 1.1-2.9 1.1-4.7 0-2.6-1.6-3.9-3.4-3.9-1.4 0-2.3.9-4 .9s-2.6-.9-4-.9Z"/></svg></span><div><small>Services</small><b>Cleaning, whitening, braces, implants</b></div></div>
+      <div class="fact"><span class="ic"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.4"/></svg></span><div><small>Location</small><b>123 Main Street, Springfield · Free parking</b></div></div>
+    </div>
+  </div>
+</section>
 
-<script src="../chatbot.min.js?v=6" data-manual></script>
-<script src="../clinic-config.js?v=6"></script>
+<section class="blk" id="insurance">
+  <div class="duo">
+    <div class="card">
+      <h3><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3Z"/><path d="m9 12 2 2 4-4"/></svg></span>Insurance we accept</h3>
+      <p class="d">In network with these PPO plans. We check your benefits before your visit.</p>
+      <div class="ins">
+        <span><i></i>Delta Dental</span><span><i></i>Cigna</span><span><i></i>Aetna</span><span><i></i>MetLife</span><span><i></i>Guardian</span>
+      </div>
+      <p class="ins-note">Most other PPO plans accepted as out of network. No insurance? Ask about our payment plans.</p>
+    </div>
+    <div class="card">
+      <h3><span class="ic"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0e7c86" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span>Clear, upfront pricing</h3>
+      <p class="d">Prices before insurance. Your exact cost is confirmed after your exam.</p>
+      <ul class="prices">
+        <li><span>New patient exam, cleaning &amp; X-rays</span><b>$99</b></li>
+        <li><span>Professional teeth whitening (in office)</span><b>$349</b></li>
+        <li><span>Take home whitening trays</span><b>$199</b></li>
+        <li><span>Implant or Invisalign consultation</span><b class="free">Free</b></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="reviews">
+  <h2 class="sec">What patients say</h2>
+  <p class="sub">Sample reviews for this demo clinic, shown to illustrate the layout.</p>
+  <div class="reviews">
+    <div class="score">
+      <div class="big">4.9</div>
+      <div class="stars" aria-label="4.9 out of 5 stars">★★★★★</div>
+      <p>Average rating from 180+ patient reviews</p>
+      <span class="tag">Sample data</span>
+    </div>
+    <div class="rv">
+      <figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“I asked about my insurance late at night and had my appointment confirmed the next morning. So easy.”</blockquote><figcaption><i>JM</i><div>Jessica M.<small>New patient</small></div></figcaption></figure>
+      <figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“The whitening price was right there on the site, no surprises. The team was friendly and quick.”</blockquote><figcaption><i>DR</i><div>David R.<small>Whitening patient</small></div></figcaption></figure>
+      <figure><div class="stars" aria-label="5 stars">★★★★★</div><blockquote>“Booked both my kids' cleanings from my phone in a minute. The front desk called to confirm the time.”</blockquote><figcaption><i>AL</i><div>Amanda L.<small>Parent of two</small></div></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<footer>Bright Smile Dental Clinic is a demo clinic. Prices, insurance and reviews are sample data, and appointment requests here are not sent to a real clinic.</footer>
+
+<div class="toast" id="toast" role="status"><span style="white-space:nowrap">✉ Sent to the Front Desk Inbox</span><button type="button" id="toastBtn">View</button></div>
+
+<script src="../chatbot.min.js?v=7" data-manual></script>
+<script src="../clinic-config.js?v=7"></script>
 <script>
   (function () {
     var cfg = JSON.parse(JSON.stringify(window.ClinicBotConfig));
@@ -126,15 +284,81 @@
     cfg.instanceId = "client-demo";
     cfg.whatsapp = Object.assign({}, cfg.whatsapp, { showButton: false });
     cfg.branding.badge = "";
+    cfg.delivery = Object.assign({}, cfg.delivery, { showDemoPreview: false }); // the request appears in the Front Desk Inbox instead
     cfg.branding.logoUrl = "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect width="24" height="24" fill="#e7f3f4"/><path transform="translate(4.2 4.2) scale(.65)" fill="#0e7c86" d="M7.5 2.6c-2 0-3.9 1.5-3.9 4.4 0 2 .7 3.6 1.2 5.3.6 2 .8 4.1 1.2 6.2.3 1.6.8 3 1.9 3 1.3 0 1.6-1.6 1.9-3.4.3-1.7.8-3.1 2.2-3.1s1.9 1.4 2.2 3.1c.3 1.8.6 3.4 1.9 3.4 1.1 0 1.6-1.4 1.9-3 .4-2.1.6-4.2 1.2-6.2.5-1.7 1.2-3.3 1.2-5.3 0-2.9-1.9-4.4-3.9-4.4-1.6 0-2.6 1-4.5 1s-2.9-1-4.5-1Z"/></svg>');
     var bot = ClinicChatbot.mount("#chat", cfg);
     var chatEl = document.getElementById("chat");
-    document.querySelectorAll(".ask button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        if (!bot || !bot.engine || bot.engine.state.busy) return;
-        if (window.innerWidth <= 980) chatEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        bot.engine.userText(b.getAttribute("data-q"));
+    function ask(text) {
+      if (!bot || !bot.engine || bot.engine.state.busy) return;
+      if (window.innerWidth <= 980) chatEl.scrollIntoView({ behavior: "smooth", block: "start" });
+      bot.engine.userText(text);
+    }
+    document.querySelectorAll(".ask button").forEach(function (b) { b.addEventListener("click", function () { ask(b.getAttribute("data-q")); }); });
+    document.getElementById("bookTop").addEventListener("click", function () { ask("I'd like to book an appointment"); });
+
+    /* ---------- Front Desk Inbox: shows each request the moment it is sent ---------- */
+    var list = document.getElementById("ibList"), view = document.getElementById("ibView"), count = document.getElementById("ibCount");
+    var mails = [], unread = 0;
+    var store = { load: function () { try { return JSON.parse(sessionStorage.getItem("clinicbot:inbox") || "[]"); } catch (e) { return []; } },
+                  save: function () { try { sessionStorage.setItem("clinicbot:inbox", JSON.stringify(mails)); } catch (e) {} } };
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function ago(t) { var m = Math.round((Date.now() - t) / 60000); return m < 1 ? "Just now" : m < 60 ? m + " min ago" : new Date(t).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }); }
+    function summary(r) { return [r.preferredDay, r.preferredTime].filter(Boolean).join(", ") || r.requestType; }
+    function show(i) {
+      var m = mails[i]; if (!m) return;
+      m.read = true; unread = mails.filter(function (x) { return !x.read; }).length;
+      count.hidden = !unread; count.textContent = unread + " new";
+      view.innerHTML = "";
+      view.appendChild(el("h3", null, m.subject));
+      view.appendChild(el("div", "ib-meta", "From: Bright Smile Website Assistant · " + ago(m.t)));
+      var dl = el("dl", "ib-rows");
+      m.rows.forEach(function (r) { dl.appendChild(el("dt", null, r[0])); dl.appendChild(el("dd", null, r[1])); });
+      view.appendChild(dl);
+      view.appendChild(el("div", "ib-note", "Preliminary request. Call or email the patient to confirm the exact time."));
+      renderList(i);
+      store.save();
+    }
+    function renderList(active, freshIdx) {
+      list.innerHTML = "";
+      mails.forEach(function (m, i) {
+        var b = el("button", "mail" + (i === active ? " on" : "") + (i === freshIdx ? " fresh" : ""));
+        b.type = "button";
+        var r1 = el("div", "r1"); var nm = el("span");
+        if (!m.read) nm.appendChild(el("span", "new", "NEW"));
+        nm.appendChild(document.createTextNode(m.name));
+        r1.appendChild(nm); r1.appendChild(el("time", null, ago(m.t)));
+        b.appendChild(r1); b.appendChild(el("div", "r2", m.preview));
+        b.addEventListener("click", function () { show(i); });
+        list.appendChild(b);
       });
+    }
+    function addMail(req) {
+      var email = ClinicBotCore.util.buildEmail(cfg, req);
+      var rows = [["Name", req.name], ["Phone", req.phone || "Not provided"], ["Email", req.email || "Not provided"]];
+      if (req.service) rows.push(["Service", req.service]);
+      if (req.preferredDay) rows.push(["Preferred day", req.preferredDay]);
+      if (req.preferredTime) rows.push(["Preferred time", req.preferredTime]);
+      if (req.notes) rows.push(["Notes", req.notes]);
+      rows.push(["Source", req.channel || "Website"]);
+      mails.unshift({ t: Date.now(), name: req.name, subject: email.subject, preview: summary(req), rows: rows, read: false });
+      renderList(-1, 0);
+      show(0);
+      mails[0].read = false; unread = mails.filter(function (x) { return !x.read; }).length;
+      count.hidden = !unread; count.textContent = unread + " new";
+      renderList(0, 0);
+      store.save();
+    }
+    mails = store.load();
+    if (mails.length) { renderList(0); show(0); }
+    setInterval(function () { if (mails.length) renderList(Array.prototype.indexOf.call(list.children, list.querySelector(".on"))); }, 30000);
+
+    var toast = document.getElementById("toast"), tt;
+    document.getElementById("toastBtn").addEventListener("click", function () { toast.classList.remove("show"); document.getElementById("inbox").scrollIntoView({ behavior: "smooth", block: "center" }); });
+    document.addEventListener("clinicbot:booking", function (e) {
+      addMail(e.detail);
+      var inbox = document.getElementById("inbox"), r = inbox.getBoundingClientRect();
+      var visible = r.top < window.innerHeight - 120 && r.bottom > 120;
+      if (!visible) { toast.classList.add("show"); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove("show"); }, 6000); }
     });
   })();
 </script>
