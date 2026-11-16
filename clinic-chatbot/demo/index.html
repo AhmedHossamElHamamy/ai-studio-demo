@@ -6,7 +6,7 @@
 <title>Clinic Assistant: Standard vs AI | Bright Smile Dental Clinic demo</title>
 <meta name="description" content="Website and WhatsApp assistant for clinics. Compare the Standard version and the AI version side by side.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%230e7c86'/%3E%3Ctext x='16' y='22' font-size='17' text-anchor='middle' fill='white'%3E✦%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="demo.css?v=3">
+<link rel="stylesheet" href="demo.css?v=4">
 </head>
 <body>
 <header class="top">
@@ -15,7 +15,6 @@
     <nav class="nav">
       <a class="on" href="index.html">Standard vs AI</a>
       <a href="whatsapp.html">WhatsApp</a>
-      <a href="site.html">On a clinic website</a>
       <a href="#install">Install</a>
     </nav>
   </div>
@@ -81,36 +80,52 @@
 
   <section class="block" id="install" style="padding-top:8px">
     <div class="wrap">
-      <h2>Works on any website</h2>
-      <p class="lead">WordPress, Wix, Squarespace, Webflow, Shopify, or a custom site. Upload two files and add one line.</p>
-      <div class="cards">
-        <div class="card">
-          <div class="ic">◱</div>
-          <h3>Floating chat button</h3>
-          <p>Paste before <code>&lt;/body&gt;</code> on any site.</p>
-<pre class="code"><span class="t">&lt;script</span> <span class="a">src</span>=<span class="s">"chatbot.min.js"</span>
-  <span class="a">data-config</span>=<span class="s">"clinic-config.js"</span> <span class="a">defer</span><span class="t">&gt;&lt;/script&gt;</span></pre>
+      <div class="inst">
+        <div class="inst-l">
+          <span class="eyebrow">Install</span>
+          <h2>Works on any website</h2>
+          <p class="lead">Live in five minutes, without changing the clinic's website.</p>
+          <ol class="isteps">
+            <li><b>Edit one file</b><span>Clinic details, hours, services and FAQ in <code>clinic-config.js</code>.</span></li>
+            <li><b>Upload two files</b><span><code>chatbot.min.js</code> and <code>clinic-config.js</code> to the website.</span></li>
+            <li><b>Paste one line</b><span>Choose how the chat appears, copy the code, done.</span></li>
+          </ol>
+          <div class="plats" aria-label="Supported platforms">
+            <span>WordPress</span><span>Wix</span><span>Squarespace</span><span>Webflow</span><span>Shopify</span><span>Any HTML site</span>
+          </div>
         </div>
-        <div class="card">
-          <div class="ic">▤</div>
-          <h3>Inside a page section</h3>
-          <p>Show the chat inside a "Book online" or "Contact" section.</p>
-<pre class="code"><span class="t">&lt;div</span> <span class="a">id</span>=<span class="s">"chat"</span> <span class="a">style</span>=<span class="s">"height:600px"</span><span class="t">&gt;&lt;/div&gt;</span>
-<span class="t">&lt;script</span> <span class="a">src</span>=<span class="s">"chatbot.min.js"</span> <span class="a">data-target</span>=<span class="s">"#chat"</span>
-  <span class="a">data-config</span>=<span class="s">"clinic-config.js"</span> <span class="a">defer</span><span class="t">&gt;&lt;/script&gt;</span></pre>
-        </div>
-        <div class="card">
-          <div class="ic">↗</div>
-          <h3>Direct link</h3>
-          <p>A full page chat to share anywhere: Google Business Profile, Instagram bio, emails, QR codes.</p>
-          <p style="margin-top:12px"><a href="chat.html">Open the direct chat link →</a></p>
-        </div>
-        <div class="card">
-          <div class="ic">▣</div>
-          <h3>Builders that block scripts</h3>
-          <p>Use an embed block with an iframe of the direct link.</p>
-<pre class="code"><span class="t">&lt;iframe</span> <span class="a">src</span>=<span class="s">"https://yoursite.com/chat.html"</span>
-  <span class="a">style</span>=<span class="s">"width:100%;height:620px;border:0"</span><span class="t">&gt;&lt;/iframe&gt;</span></pre>
+
+        <div class="codewin">
+          <div class="cw-tabs" role="tablist" aria-label="Install options">
+            <button role="tab" aria-selected="true" data-tab="float">Chat button</button>
+            <button role="tab" aria-selected="false" data-tab="inline">Inside a page</button>
+            <button role="tab" aria-selected="false" data-tab="link">Direct link</button>
+            <button role="tab" aria-selected="false" data-tab="iframe">Embed block</button>
+          </div>
+          <div class="cw-body">
+            <div class="cw-pane" data-pane="float">
+              <p>A floating chat button in the corner of every page. Paste before <code>&lt;/body&gt;</code>.</p>
+<pre class="cw-code"><code>&lt;script src="/chatbot/chatbot.min.js"
+        data-config="/chatbot/clinic-config.js" defer&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <div class="cw-pane" data-pane="inline" hidden>
+              <p>The chat inside a section of a page, for example "Book online" or "Contact us".</p>
+<pre class="cw-code"><code>&lt;div id="chat" style="height:600px"&gt;&lt;/div&gt;
+&lt;script src="/chatbot/chatbot.min.js" data-target="#chat"
+        data-config="/chatbot/clinic-config.js" defer&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <div class="cw-pane" data-pane="link" hidden>
+              <p>A full page chat with its own link. Share it on Google Business Profile, Instagram, emails or a QR code at the reception desk.</p>
+<pre class="cw-code"><code>https://yourclinic.com/chat.html</code></pre>
+              <a class="cw-try" href="chat.html">Open the demo link →</a>
+            </div>
+            <div class="cw-pane" data-pane="iframe" hidden>
+              <p>For website builders that don't allow scripts: add an "Embed" or "HTML" block with this code.</p>
+<pre class="cw-code"><code>&lt;iframe src="https://yourclinic.com/chat.html"
+        style="width:100%;height:620px;border:0"&gt;&lt;/iframe&gt;</code></pre>
+            </div>
+            <button class="cw-copy" type="button">Copy code</button>
+          </div>
         </div>
       </div>
     </div>
@@ -119,8 +134,8 @@
 
 <footer><div class="wrap">Demo for Bright Smile Dental Clinic, a sample clinic. Appointment requests in this demo are not sent: the assistant shows the email the clinic would receive.</div></footer>
 
-<script src="../chatbot.min.js?v=3" data-manual></script>
-<script src="../clinic-config.js?v=3"></script>
+<script src="../chatbot.min.js?v=4" data-manual></script>
+<script src="../clinic-config.js?v=4"></script>
 <script>
   (function () {
     var base = window.ClinicBotConfig;
@@ -134,6 +149,23 @@
     var bots = { standard: ClinicChatbot.mount("#bot-standard", variant(false)), ai: ClinicChatbot.mount("#bot-ai", variant(true)) };
     document.querySelectorAll(".try button").forEach(function (b) {
       b.addEventListener("click", function () { var w = bots[b.dataset.bot]; if (w && !w.engine.state.busy) w.engine.userText(b.textContent); });
+    });
+  })();
+  (function () {
+    var tabs = document.querySelectorAll(".cw-tabs button"), panes = document.querySelectorAll(".cw-pane");
+    tabs.forEach(function (t) {
+      t.addEventListener("click", function () {
+        tabs.forEach(function (x) { x.setAttribute("aria-selected", x === t ? "true" : "false"); });
+        panes.forEach(function (p) { p.hidden = p.dataset.pane !== t.dataset.tab; });
+        copy.textContent = "Copy code";
+      });
+    });
+    var copy = document.querySelector(".cw-copy");
+    copy.addEventListener("click", function () {
+      var code = document.querySelector(".cw-pane:not([hidden]) code").textContent;
+      var done = function () { copy.textContent = "Copied ✓"; setTimeout(function () { copy.textContent = "Copy code"; }, 1800); };
+      if (navigator.clipboard) navigator.clipboard.writeText(code).then(done, done);
+      else { var ta = document.createElement("textarea"); ta.value = code; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} ta.remove(); done(); }
     });
   })();
 </script>
