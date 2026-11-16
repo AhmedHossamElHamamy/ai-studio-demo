@@ -12,3 +12,6 @@ Nawafidh landing pages: https://ahmedhossamelhamamy.github.io/ai-studio-demo/naw
 Games:
 Connect 4 against the computer (three levels, two designs): https://ahmedhossamelhamamy.github.io/ai-studio-demo/connect4/
 Neon design: https://ahmedhossamelhamamy.github.io/ai-studio-demo/connect4/?theme=neon
+
+Chatbots:
+Clinic website chatbot (FAQ answers and appointment requests, sample dental clinic): https://ahmedhossamelhamamy.github.io/ai-studio-demo/clinic-chatbot/
